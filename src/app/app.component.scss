@@ -2,6 +2,52 @@
     height: 100vh;
 }
 
+mat-toolbar, mat-toolbar-row {
+    height: 56px;
+    min-height: 56px;
+}
+
+.menu-items {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0;
+
+    li {
+        padding-left: 16px;
+        padding-right: 16px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        mat-icon {
+            margin-right: 16px;
+        }
+
+        &:hover {
+            background-color: rgba($color: #000000, $alpha: 0.25);
+        }
+    }
+}
+
 .menu-icon {
     cursor: pointer;
+}
+
+.sidenav {
+    width: 300px;
+}
+
+.logo-container {
+    border-bottom: 1px solid rgba($color: white, $alpha: 0.25);
+    padding-left: 16px;
+    padding-right: 16px;
+    min-height: 56px; 
+    display: flex;
+    align-items: center;
+}
+
+.router-container {
+    padding-left: 56px;
+    padding-top: 16px;
 }
