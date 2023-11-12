@@ -1,53 +1,57 @@
-<h1 mat-dialog-title>Add User</h1>
-<div mat-dialog-content>
-    <div class="padding-top-16">
-        <mat-form-field class="margin-right-16" appearance="outline">
-            <mat-label>Firstname</mat-label>
-            <input [(ngModel)]="user.firstName" matInput placeholder="Firstname">
-            <!-- <mat-hint>Please enter a name</mat-hint> -->
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Lastname</mat-label>
-            <input [(ngModel)]="user.lastName" matInput placeholder="Lastname">
-            <!-- <mat-hint>Please enter a name</mat-hint> -->
-        </mat-form-field>
-    </div>
+<div class="dialog-container">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 
-    <div class="padding-top-16">
-        <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Birth date</mat-label>
-            <input [(ngModel)]="birthDate" matInput placeholder="Birth Date" [matDatepicker]="picker">
-            <!-- <mat-hint>Please enter a date</mat-hint> -->
-            <mat-datepicker-toggle matIconSuffix [for]="picker">
-                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-            </mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-    </div>
+    <h1 mat-dialog-title>Add User</h1>
+    <div mat-dialog-content>
+        <div class="padding-top-16">
+            <mat-form-field class="margin-right-16" appearance="outline">
+                <mat-label>Firstname</mat-label>
+                <input [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="Firstname">
+                <!-- <mat-hint>Please enter a name</mat-hint> -->
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Lastname</mat-label>
+                <input [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="Lastname">
+                <!-- <mat-hint>Please enter a name</mat-hint> -->
+            </mat-form-field>
+        </div>
 
-    <div class="padding-top-16">
-        <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Streetname + House No.</mat-label>
-            <input [(ngModel)]="user.street" matInput placeholder="Streetname + Number">
-            <!-- <mat-hint>Please enter your streetname and house no.</mat-hint> -->
-        </mat-form-field>
-    </div>
+        <div class="padding-top-16">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Birth date</mat-label>
+                <input [disabled]="loading" [(ngModel)]="birthDate" matInput placeholder="Birth Date" [matDatepicker]="picker">
+                <!-- <mat-hint>Please enter a date</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
 
-    <div class="padding-top-16">
-        <mat-form-field class="margin-right-16" appearance="outline">
-            <mat-label>Zip code</mat-label>
-            <input [(ngModel)]="user.zipCode" matInput placeholder="Zip code">
-            <!-- <mat-hint>Please enter your zip code</mat-hint> -->
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>City</mat-label>
-            <input [(ngModel)]="user.city" matInput placeholder="City">
-            <!-- <mat-hint>Please enter your city</mat-hint> -->
-        </mat-form-field>
-    </div>
+        <div class="padding-top-16">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Streetname + House No.</mat-label>
+                <input [disabled]="loading" [(ngModel)]="user.street" matInput placeholder="Streetname + Number">
+                <!-- <mat-hint>Please enter your streetname and house no.</mat-hint> -->
+            </mat-form-field>
+        </div>
 
-</div>
-<div mat-dialog-actions>
-    <button mat-button>Cancel</button>
-    <button (click)="safeUser()" mat-button cdkFocusInitial>Safe</button>
+        <div class="padding-top-16">
+            <mat-form-field class="margin-right-16" appearance="outline">
+                <mat-label>Zip code</mat-label>
+                <input [disabled]="loading" [(ngModel)]="user.zipCode" matInput placeholder="Zip code">
+                <!-- <mat-hint>Please enter your zip code</mat-hint> -->
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>City</mat-label>
+                <input [disabled]="loading" [(ngModel)]="user.city" matInput placeholder="City">
+                <!-- <mat-hint>Please enter your city</mat-hint> -->
+            </mat-form-field>
+        </div>
+
+    </div>
+    <div mat-dialog-actions>
+        <button [disabled]="loading" mat-button>Cancel</button>
+        <button [disabled]="loading" (click)="safeUser()" mat-button cdkFocusInitial>Safe</button>
+    </div>
 </div>

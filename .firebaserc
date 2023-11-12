@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "crm-system-ae75c": {
+      "hosting": {
+        "crm-system": [
+          "crm-system-ae75c"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "crm-system-ae75c"
+  }
+}
