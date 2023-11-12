@@ -45,6 +45,11 @@ mat-toolbar, mat-toolbar-row {
     min-height: 56px; 
     display: flex;
     align-items: center;
+
+    img {
+        max-width: 100%;
+        height: 56px;
+    }
 }
 
 .router-container {

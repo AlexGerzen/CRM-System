@@ -4,5 +4,18 @@
 </button>
 
 <mat-card>
-    <mat-card-content>Simple card</mat-card-content>
+    <table class="user-table">
+        <tr>
+            <th>Name</th>
+            <th>E-Mail</th>
+            <th>City</th>
+        </tr>
+
+        <tr *ngFor="let user of allUsers, index as i" [routerLink]="['/user/' + allIds[i]]" >
+            <td>{{user.firstName}} {{user.lastName}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.city}}</td>
+        </tr>
+
+    </table>
 </mat-card>
