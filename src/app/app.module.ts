@@ -24,6 +24,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { DiaologEditAddressComponent } from './diaolog-edit-address/diaolog-edit-address.component';
+import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
+
 
 
 
@@ -34,10 +38,13 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     DashboardComponent,
     UserComponent,
     DialogAddUserComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    DiaologEditAddressComponent,
+    DialogEditUserComponent
   ],
   imports: [
     BrowserModule,
+    MatMenuModule,
     AppRoutingModule,
     NoopAnimationsModule,
     MatToolbarModule,
