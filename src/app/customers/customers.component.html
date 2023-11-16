@@ -1,0 +1,27 @@
+<button (click)="openDialog()" class="add-user-btn" mat-fab color="primary" matTooltip="Add customer"
+    [matTooltipPosition]="'above'">
+    <mat-icon>add</mat-icon>
+</button>
+
+<mat-card>
+    <table class="user-table">
+        <tr>
+            <th>Company Name</th>
+            <th>City</th>
+            <th>Street</th>
+            <th>Zip Code</th>
+            <th>Open Ticket</th>
+            <th>Contact</th>
+        </tr>
+
+        <tr *ngFor="let customer of allCustomers, index as i" [routerLink]="['/customer/' + allCustomersId[i]]" >
+            <td>{{customer.name}} {{customer.lastName}}</td>
+            <td>{{customer.city}}</td>
+            <td>{{customer.streetname}}</td>
+            <td>{{customer.zipCode}}</td>
+            <td *ngIf="customer.openTicket">Yes</td><td *ngIf="!customer.openTicket">No</td>
+            <td>{{customer.contact}}</td>
+        </tr>
+
+    </table>
+</mat-card>

@@ -27,7 +27,8 @@
         <div class="padding-top-16">
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Birth date</mat-label>
-                <input [disabled]="loading" [(ngModel)]="birthDate" matInput placeholder="Birth Date" [matDatepicker]="picker">
+                <input [disabled]="loading" [(ngModel)]="birthDate" matInput placeholder="Birth Date"
+                    [matDatepicker]="picker">
                 <!-- <mat-hint>Please enter a date</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker">
                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
@@ -58,7 +59,7 @@
         </div>
 
     </div>
-    <div mat-dialog-actions>
+    <div mat-dialog-actions class="button-container">
         <button [disabled]="loading" (click)="dialogRef.close()" mat-button>Cancel</button>
         <button [disabled]="loading" (click)="safeUser()" mat-button cdkFocusInitial>Safe</button>
     </div>

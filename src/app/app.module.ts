@@ -27,6 +27,10 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { DiaologEditAddressComponent } from './diaolog-edit-address/diaolog-edit-address.component';
 import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
+import { CustomerInfoComponent } from './customer-info/customer-info.component';
+import { OpenTicketsComponent } from './open-tickets/open-tickets.component';
+import { CustomersComponent } from './customers/customers.component';
+import { DialogAddCustomerComponent } from './dialog-add-customer/dialog-add-customer.component';
 
 
 
@@ -40,7 +44,11 @@ import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.com
     DialogAddUserComponent,
     UserDetailComponent,
     DiaologEditAddressComponent,
-    DialogEditUserComponent
+    DialogEditUserComponent,
+    CustomerInfoComponent,
+    OpenTicketsComponent,
+    CustomersComponent,
+    DialogAddCustomerComponent
   ],
   imports: [
     BrowserModule,
