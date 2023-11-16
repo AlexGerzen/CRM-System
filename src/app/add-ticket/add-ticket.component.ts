@@ -7,15 +7,19 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./add-ticket.component.scss']
 })
 export class AddTicketComponent {
-  // Hier wird eine FormControl erstellt und initialisiert
   email = new FormControl('', [Validators.required, Validators.email]);
+  titel = new FormControl('', [Validators.required]);
+  urgency = new FormControl('', [Validators.required]);
 
-  // Beispiel für eine Funktion, um die Fehlermeldung abzurufen
-  getErrorMessage() {
+  getErrorMessageEmail() {
     if (this.email.hasError('required')) {
       return 'Email is required';
     }
     return this.email.hasError('email') ? 'Not a valid email' : '';
+  }
+
+  getErrorMessage(field: string) {
+    return field + " is required"
   }
 }
 

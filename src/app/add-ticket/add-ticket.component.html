@@ -1,17 +1,53 @@
 <mat-card>
     <mat-card-content>
-      <mat-card-header>
-        <mat-card-title>Add Ticket</mat-card-title>
-      </mat-card-header>
-  
-      <form>
-        <div class="example-container">
-          <mat-form-field>
-            <mat-label>Enter your email</mat-label>
-            <input matInput placeholder="pat@example.com" [formControl]="email">
-            <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
-          </mat-form-field>
+        <mat-card-header>
+            <mat-card-title>Add Ticket</mat-card-title>
+            <mat-card-subtitle>Fields with "*" are required</mat-card-subtitle>
+        </mat-card-header>
+        <div class="formfields-container">
+
+            <div class="formfields-container padding-top-16">
+                <mat-form-field class="width-500px">
+                    <mat-label>Enter the titel</mat-label>
+                    <input matInput placeholder="Titel" [formControl]="titel">
+                    <mat-error *ngIf="titel.invalid">{{ getErrorMessage("Titel") }}</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="formfields-container padding-top-16">
+                <mat-form-field class="width-500px">
+                    <mat-label>Due date</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+
+            <div class="formfields-container padding-top-16">
+                <mat-form-field class="width-500px">
+                    <mat-label>Enter the contact mail</mat-label>
+                    <input matInput placeholder="example@example.com" [formControl]="email">
+                    <mat-error *ngIf="email.invalid">{{ getErrorMessageEmail() }}</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="formfields-container padding-top-16">
+                <mat-form-field class="width-500px">
+                    <mat-label>Select the urgency</mat-label>
+                    <mat-select [formControl]="urgency">
+                        <mat-option value="option1">Urgent</mat-option>
+                        <mat-option value="option2">High Priority</mat-option>
+                        <mat-option value="option3">Timely</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="urgency.invalid">{{ getErrorMessage("Urgency") }}</mat-error>
+                </mat-form-field>
+            </div>
+
+
         </div>
-      </form>
+
+
     </mat-card-content>
-  </mat-card>
+</mat-card>

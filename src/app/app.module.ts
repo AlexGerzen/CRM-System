@@ -34,6 +34,8 @@ import { DialogAddCustomerComponent } from './dialog-add-customer/dialog-add-cus
 import {MatTabsModule} from '@angular/material/tabs';
 import { AddTicketComponent } from './add-ticket/add-ticket.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 
@@ -63,6 +65,7 @@ import {ReactiveFormsModule} from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    MatSelectModule,
     ReactiveFormsModule,
     MatMenuModule,
     AppRoutingModule,

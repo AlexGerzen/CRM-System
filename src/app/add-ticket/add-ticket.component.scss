@@ -1,0 +1,17 @@
+.formfields-container {
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+mat-card-header {
+    justify-content: center;
+}
+mat-card-title {
+    text-align: center;
+}
+
+.width-500px {
+    width: 500px;
+}
