@@ -1,1 +1,34 @@
-<p>open-tickets works!</p>
+<mat-card>
+    <mat-card-content>
+        <mat-tab-group>
+            <mat-tab label="Overdue">
+                <mat-card class="ticket-container">
+                    <mat-card-header>
+                        <mat-card-title>#1047 Titel</mat-card-title>
+                        <mat-card-subtitle>Kunde</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>Assigned to: Alex Gerzen</p>
+                        <p>Status</p>
+                        <p class="late-by">Late by 10 hours</p>
+                    </mat-card-content>
+                    <button class="ticket-menu" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                            <span>Edit</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>delete</mat-icon>
+                            <span>Delete</span>
+                        </button>
+                    </mat-menu>
+                </mat-card>
+            </mat-tab>
+            <mat-tab label="Due in 24 hours"> Due in 24 hours </mat-tab>
+            <mat-tab label="Due in 48h or more"> Due in 48h or more </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+</mat-card>

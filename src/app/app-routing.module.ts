@@ -6,6 +6,7 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { CustomerInfoComponent } from './customer-info/customer-info.component';
 import { OpenTicketsComponent } from './open-tickets/open-tickets.component';
 import { CustomersComponent } from './customers/customers.component';
+import { AddTicketComponent } from './add-ticket/add-ticket.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'user/:id', component: UserDetailComponent},
   {path: 'customers', component: CustomersComponent},
   {path: 'openTickets', component: OpenTicketsComponent},
+  {path: 'addTicket', component: AddTicketComponent},
 ];
 
 @NgModule({

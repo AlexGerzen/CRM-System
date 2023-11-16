@@ -1,0 +1,17 @@
+<mat-card>
+    <mat-card-content>
+      <mat-card-header>
+        <mat-card-title>Add Ticket</mat-card-title>
+      </mat-card-header>
+  
+      <form>
+        <div class="example-container">
+          <mat-form-field>
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" [formControl]="email">
+            <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>

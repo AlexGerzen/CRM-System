@@ -31,6 +31,16 @@ import { CustomerInfoComponent } from './customer-info/customer-info.component';
 import { OpenTicketsComponent } from './open-tickets/open-tickets.component';
 import { CustomersComponent } from './customers/customers.component';
 import { DialogAddCustomerComponent } from './dialog-add-customer/dialog-add-customer.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { AddTicketComponent } from './add-ticket/add-ticket.component';
+import {ReactiveFormsModule} from '@angular/forms';
+
+
+
+
+
+
+
 
 
 
@@ -48,12 +58,15 @@ import { DialogAddCustomerComponent } from './dialog-add-customer/dialog-add-cus
     CustomerInfoComponent,
     OpenTicketsComponent,
     CustomersComponent,
-    DialogAddCustomerComponent
+    DialogAddCustomerComponent,
+    AddTicketComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     MatMenuModule,
     AppRoutingModule,
+    MatTabsModule,
     NoopAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,
