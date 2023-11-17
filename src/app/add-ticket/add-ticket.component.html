@@ -9,45 +9,62 @@
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Enter the titel</mat-label>
-                    <input matInput placeholder="Titel" [formControl]="titel">
+                    <input [disabled]="loading" [(ngModel)]="ticket.title" matInput placeholder="Titel" [formControl]="titel">
                     <mat-error *ngIf="titel.invalid">{{ getErrorMessage("Titel") }}</mat-error>
                 </mat-form-field>
             </div>
 
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
-                    <mat-label>Due date</mat-label>
-                    <input matInput [matDatepicker]="picker">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-label>Description</mat-label>
+                    <textarea [disabled]="loading" [(ngModel)]="ticket.description" [formControl]="description" matInput></textarea>
+                    <mat-error *ngIf="description.invalid">{{ getErrorMessage("Description") }}</mat-error>
                 </mat-form-field>
             </div>
 
+            <div class="formfields-container padding-top-16">
+                <mat-form-field class="width-500px">
+                    <mat-label>Enter the company name</mat-label>
+                    <input [disabled]="loading" [(ngModel)]="ticket.company" matInput placeholder="Company name" [formControl]="company">
+                    <mat-error *ngIf="company.invalid">{{ getErrorMessage("Company name") }}</mat-error>
+                </mat-form-field>
+            </div>
 
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Enter the contact mail</mat-label>
-                    <input matInput placeholder="example@example.com" [formControl]="email">
+                    <input [disabled]="loading" [(ngModel)]="ticket.contact" matInput placeholder="example@example.com" [formControl]="email">
                     <mat-error *ngIf="email.invalid">{{ getErrorMessageEmail() }}</mat-error>
                 </mat-form-field>
             </div>
 
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
+                    <mat-label>Due date</mat-label>
+                    <input [disabled]="loading" [(ngModel)]="dueDate" matInput [matDatepicker]="picker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <div class="formfields-container padding-top-16">
+                <mat-form-field class="width-500px">
                     <mat-label>Select the urgency</mat-label>
-                    <mat-select [formControl]="urgency">
-                        <mat-option value="option1">Urgent</mat-option>
-                        <mat-option value="option2">High Priority</mat-option>
-                        <mat-option value="option3">Timely</mat-option>
+                    <mat-select [disabled]="loading" [(ngModel)]="ticket.urgency" [formControl]="urgency">
+                        <mat-option value="Urgent">Urgent</mat-option>
+                        <mat-option value="High Priority">High Priority</mat-option>
+                        <mat-option value="Timely">Timely</mat-option>
                     </mat-select>
                     <mat-error *ngIf="urgency.invalid">{{ getErrorMessage("Urgency") }}</mat-error>
                 </mat-form-field>
             </div>
 
-
         </div>
 
+        <mat-card-actions>
+            <button [disabled]="loading" (click)="safeTicket()" color="primary" mat-raised-button>SAFE</button>
+        </mat-card-actions>
 
     </mat-card-content>
 </mat-card>
