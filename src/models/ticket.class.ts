@@ -14,7 +14,7 @@ export class Ticket {
         this.title = obj ? obj.title : '';
         this.date = obj ? obj.date : '';
         this.dueDate = obj ? obj.dueDate : '';
-        this.urgency = obj ? obj.importance : '';
+        this.urgency = obj ? obj.urgency : '';
         this.assignedEmployee = obj ? obj.assignedEmployee : '';
         this.ticketNumber = obj ? obj.ticketNumber : '';
         this.ticketStatus = obj ? obj.ticketStatus : '';

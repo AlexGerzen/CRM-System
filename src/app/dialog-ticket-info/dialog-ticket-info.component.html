@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Ticket Info</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p>Ticketnumber: #{{ticketInfo.ticketNumber}}</p>
+        <p>Titel: {{ticketInfo.title}}</p>
+        <p>Description: {{ticketInfo.description}}</p>
+        <p>Company: {{ticketInfo.company}}</p>
+        <p>Contact: {{ticketInfo.contact}}</p>
+        <p>Due by Date: {{transformDate()}}</p>
+        <p>Assigned Employee: {{ticketInfo.assignedEmployee}}</p>
+        <p>Status: {{ticketInfo.ticketStatus}}</p>
+        <p>Created: {{ticketInfo.date}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button>Safe</button>
+        <button mat-button>Cancel</button>
+    </mat-card-actions>
+</mat-card>

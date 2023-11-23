@@ -10,7 +10,7 @@
                 <mat-form-field class="width-500px">
                     <mat-label>Enter the titel</mat-label>
                     <input [disabled]="loading" [(ngModel)]="ticket.title" matInput placeholder="Titel" [formControl]="titel">
-                    <mat-error *ngIf="titel.invalid">{{ getErrorMessage("Titel") }}</mat-error>
+                    <mat-error *ngIf="showTitleError">{{ getErrorMessage("Titel") }}</mat-error>
                 </mat-form-field>
             </div>
 
@@ -18,7 +18,7 @@
                 <mat-form-field class="width-500px">
                     <mat-label>Description</mat-label>
                     <textarea [disabled]="loading" [(ngModel)]="ticket.description" [formControl]="description" matInput></textarea>
-                    <mat-error *ngIf="description.invalid">{{ getErrorMessage("Description") }}</mat-error>
+                    <mat-error *ngIf="showDescriptionError">{{ getErrorMessage("Description") }}</mat-error>
                 </mat-form-field>
             </div>
 
@@ -26,15 +26,15 @@
                 <mat-form-field class="width-500px">
                     <mat-label>Enter the company name</mat-label>
                     <input [disabled]="loading" [(ngModel)]="ticket.company" matInput placeholder="Company name" [formControl]="company">
-                    <mat-error *ngIf="company.invalid">{{ getErrorMessage("Company name") }}</mat-error>
+                    <mat-error *ngIf="showCompanyError">{{ getErrorMessage("Company name") }}</mat-error>
                 </mat-form-field>
             </div>
 
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Enter the contact mail</mat-label>
-                    <input [disabled]="loading" [(ngModel)]="ticket.contact" matInput placeholder="example@example.com" [formControl]="email">
-                    <mat-error *ngIf="email.invalid">{{ getErrorMessageEmail() }}</mat-error>
+                    <input [disabled]="loading" [(ngModel)]="ticket.contact" matInput placeholder="example@example.com" [formControl]="contact">
+                    <mat-error *ngIf="showContactError">{{ getErrorMessageEmail() }}</mat-error>
                 </mat-form-field>
             </div>
 
@@ -53,10 +53,10 @@
                     <mat-label>Select the urgency</mat-label>
                     <mat-select [disabled]="loading" [(ngModel)]="ticket.urgency" [formControl]="urgency">
                         <mat-option value="Urgent">Urgent</mat-option>
-                        <mat-option value="High Priority">High Priority</mat-option>
-                        <mat-option value="Timely">Timely</mat-option>
+                        <mat-option value="Middle">Middle</mat-option>
+                        <mat-option value="Low">Low</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="urgency.invalid">{{ getErrorMessage("Urgency") }}</mat-error>
+                    <mat-error *ngIf="showUrgencyError">{{ getErrorMessage("Urgency") }}</mat-error>
                 </mat-form-field>
             </div>
 

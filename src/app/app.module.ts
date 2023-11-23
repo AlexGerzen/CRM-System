@@ -35,6 +35,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { AddTicketComponent } from './add-ticket/add-ticket.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
+import { DialogTicketInfoComponent } from './dialog-ticket-info/dialog-ticket-info.component';
 
 
 
@@ -61,7 +62,8 @@ import {MatSelectModule} from '@angular/material/select';
     OpenTicketsComponent,
     CustomersComponent,
     DialogAddCustomerComponent,
-    AddTicketComponent
+    AddTicketComponent,
+    DialogTicketInfoComponent
   ],
   imports: [
     BrowserModule,
