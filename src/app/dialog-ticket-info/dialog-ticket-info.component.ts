@@ -1,6 +1,6 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Firestore, collection, doc, getDoc } from '@angular/fire/firestore';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Firestore, collection, doc, getDoc, setDoc } from '@angular/fire/firestore';
 import { Ticket } from 'src/models/ticket.class';
 
 @Component({
@@ -11,15 +11,17 @@ import { Ticket } from 'src/models/ticket.class';
 export class DialogTicketInfoComponent implements OnInit {
   private firestore: Firestore = inject(Firestore);
   ticketInfo: Ticket;
+  ticketInfoCopy: Ticket;
+  ticketInfoCopyDate: Date;
+  edit: boolean = false;
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
-    
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DialogTicketInfoComponent>) {
+
   }
 
   ngOnInit(): void {
     this.getDocument();
-    this.transformDate2();
   }
 
   async getDocument() {
@@ -27,8 +29,6 @@ export class DialogTicketInfoComponent implements OnInit {
       .then((docSnapshot) => {
         if (docSnapshot.exists()) {
           this.ticketInfo = new Ticket(docSnapshot.data());
-          console.log(this.ticketInfo);
-
         } else {
           console.log('Dokument nicht gefunden.');
         }
@@ -38,8 +38,9 @@ export class DialogTicketInfoComponent implements OnInit {
       });
   }
 
-  transformDate() {
-    let date = new Date(this.ticketInfo.dueDate);
+  transformDate(rawDate) {
+    let date = new Date(rawDate);
+
     let year = date.getFullYear();
     let month = date.getMonth() + 1; // Monate beginnen bei 0 (Januar) bis 11 (Dezember), daher +1
     let day = date.getDate();
@@ -49,13 +50,23 @@ export class DialogTicketInfoComponent implements OnInit {
     return transformedDate
   }
 
-  transformDate2() {
-    var timestamp = 1700496942; // Sekunden seit dem 1. Januar 1970 (Epoch)
-    var milliseconds = timestamp * 1000; // Umrechnung in Millisekunden
-
-    var normalesDatum = new Date(milliseconds);
-
-    console.log(normalesDatum);
+  switchEditMode() {
+    if (this.edit) {
+      this.edit = false;
+    } else {
+      this.edit = true;
+      this.ticketInfoCopy = this.ticketInfo
+      this.ticketInfoCopyDate = this.transformDateForCopy(this.ticketInfoCopy.dueDate)
+    }
   }
 
+  transformDateForCopy(rawDate) {
+    return new Date(rawDate);
+  }
+
+  async updateTicket() {
+    this.ticketInfoCopy.dueDate = this.ticketInfoCopyDate.getTime();
+    await (setDoc(doc(collection(this.firestore, 'tickets'), this.data.id), this.ticketInfoCopy.toJson()));
+    this.dialogRef.close();
+  }
 }

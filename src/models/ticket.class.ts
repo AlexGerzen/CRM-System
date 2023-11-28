@@ -1,6 +1,6 @@
 export class Ticket {
     title: string;
-    date: Date;
+    date: number;
     dueDate: number;
     urgency: string;
     assignedEmployee: string;

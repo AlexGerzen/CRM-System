@@ -1,0 +1,60 @@
+mat-card {
+    color: white;
+    position: relative;
+}
+
+.info {
+    font-size: 16px;
+    margin-top: 16px;
+    cursor: default;
+}
+
+.category {
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: underline;
+    padding-bottom: 5px;
+}
+
+mat-card-header {
+    justify-content: center;
+}
+
+mat-card-title {
+    font-size: 32px;
+}
+
+mat-card-content {
+    padding-top: 32px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+mat-card-actions {
+    justify-content: center;
+    gap: 50px;
+    padding-top: 30px;
+
+    button {
+        width: 100px;
+    }
+}
+
+.edit-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.company-contact-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.width-50 {
+    width: calc(50% - 8px);
+}
+
+mat-form-field {
+    padding-top: 16px;
+}

@@ -25,6 +25,7 @@ export class AddTicketComponent implements OnInit {
   ticket = new Ticket();
   loading: boolean = false;
   dueDate: Date;
+  date;
 
   private firestore: Firestore = inject(Firestore);
 
@@ -40,7 +41,8 @@ export class AddTicketComponent implements OnInit {
     if (this.checkFields()) {
       this.loading = true;
       this.ticket.dueDate = this.dueDate.getTime();
-      this.ticket.date = new Date();
+      this.date = new Date();
+      this.ticket.date = this.date.getTime();
       this.ticket.ticketNumber = this.createTicketnumber();
       this.ticket.ticketStatus = "Requested"
       await this.addDocument();
