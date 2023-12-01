@@ -1,0 +1,23 @@
+<mat-card>
+    <mat-card-content>
+        <mat-card (click)="openDialog(allTicketIds[i])" *ngFor="let tickets of allTickets, , index as i" class="ticket-container">
+            <mat-card-header>
+                <mat-card-title>
+                    #{{allTickets[i]['ticketNumber']}}
+                </mat-card-title>
+                <mat-card-subtitle>{{allTickets[i]['company']}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="bottom-left">
+                    <p>Contact: {{allTickets[i]['contact']}}</p>
+                    <p>{{allTickets[i]['ticketStatus']}}</p>
+                </div>
+                <p class="late-by">Due by {{allDates[i]}}</p>
+                <div class="title">{{allTickets[i]['title']}}</div>
+            </mat-card-content>
+            <button (click)="deleteTicket($event, i)" class="ticket-menu" mat-icon-button>
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-card>
+    </mat-card-content>
+</mat-card>

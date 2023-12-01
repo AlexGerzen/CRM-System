@@ -3,14 +3,14 @@ export class Employee {
     lastName: string;
     email: string;
     phoneNumber: string;
-    status: string;
+    position: string;
 
     constructor(obj?: any) {
         this.firstName = obj ? obj.firstName : '';
         this.lastName = obj ? obj.lastName : '';
         this.email = obj ? obj.email : '';
         this.phoneNumber = obj ? obj.phoneNumber : '';
-        this.status = obj ? obj.status : '';
+        this.position = obj ? obj.position : '';
     }
 
     public toJson() {
@@ -19,7 +19,7 @@ export class Employee {
             lastName: this.lastName,
             email: this.email,
             phoneNumber: this.phoneNumber,
-            status: this.status,
+            position: this.position,
         }
     }
 }

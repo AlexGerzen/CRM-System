@@ -1,0 +1,23 @@
+<button (click)="openDialog()" class="add-user-btn" mat-fab color="primary" matTooltip="Add user"
+    [matTooltipPosition]="'above'">
+    <mat-icon>add</mat-icon>
+</button>
+
+<mat-card>
+    <table class="user-table">
+        <tr>
+            <th>Name</th>
+            <th>E-Mail</th>
+            <th>Phone number</th>
+            <th>Position</th>
+        </tr>
+
+        <tr *ngFor="let employee of allEmployees, index as i" [routerLink]="['/employee/' + allEmployeeIds[i]]" >
+            <td>{{employee.firstName}} {{employee.lastName}}</td>
+            <td>{{employee.email}}</td>
+            <td>{{employee.phoneNumber}}</td>
+            <td>{{employee.position}}</td>
+        </tr>
+
+    </table>
+</mat-card>

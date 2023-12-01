@@ -101,9 +101,10 @@
         <button (click)="dialogRef.close()" mat-raised-button>Cancel</button>
     </mat-card-actions>
     <mat-card-actions *ngIf="!edit">
+        <button (click)="deleteTicket()" mat-raised-button color="primary">Finished!</button>
         <button (click)="dialogRef.close()" mat-raised-button>Close</button>
     </mat-card-actions>
-    <button *ngIf="!edit" (click)="switchEditMode()" class="edit-button" mat-icon-button>
+    <button *ngIf="!edit && data.collection !== 'ticketHistory'" (click)="switchEditMode()" class="edit-button" mat-icon-button>
         <mat-icon>edit</mat-icon>
     </button>
 </mat-card>

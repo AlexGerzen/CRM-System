@@ -5,8 +5,7 @@
                 <mat-card (click)="openDialog(allUrgentTicketIds[i])"
                     *ngFor="let tickets of allUrgentTickets, , index as i" class="ticket-container">
                     <mat-card-header>
-                        <mat-card-title>#{{allUrgentTickets[i]['ticketNumber']}}
-                            {{allUrgentTickets[i]['titel']}}</mat-card-title>
+                        <mat-card-title>#{{allUrgentTickets[i]['ticketNumber']}}</mat-card-title>
                         <mat-card-subtitle>{{allUrgentTickets[i]['company']}}</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>
@@ -17,7 +16,7 @@
                             <p class="late-by">Due by {{allUrgentDates[i]}}</p>
                         <div class="title">{{allUrgentTickets[i]['title']}}</div>
                     </mat-card-content>
-                    <button (click)="deleteTicket(i, allUrgentTicketIds)" class="ticket-menu" mat-icon-button>
+                    <button id="deleteButtonUrgent{{i}}" (click)="deleteTicket($event, i, allUrgentTicketIds, 'Deleted')" class="ticket-menu" mat-icon-button>
                         <mat-icon>delete</mat-icon>
                     </button>
                 </mat-card>
@@ -26,8 +25,7 @@
                 <mat-card (click)="openDialog(allMiddleTicketIds[i])"
                     *ngFor="let tickets of allMiddleTickets, , index as i" class="ticket-container">
                     <mat-card-header>
-                        <mat-card-title>#{{allMiddleTickets[i]['ticketNumber']}}
-                            {{allMiddleTickets[i]['titel']}}</mat-card-title>
+                        <mat-card-title>#{{allMiddleTickets[i]['ticketNumber']}}</mat-card-title>
                         <mat-card-subtitle>{{allMiddleTickets[i]['company']}}</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>
@@ -38,17 +36,16 @@
                         <p class="late-by">Due by {{allMiddleDates[i]}}</p>
                     <div class="title">{{allMiddleTickets[i]['title']}}</div>
                 </mat-card-content>
-                    <button (click)="deleteTicket(i, allMiddleTicketIds)" class="ticket-menu" mat-icon-button>
-                        <mat-icon>delete</mat-icon>
-                    </button>
+                <button id="deleteButtonUrgent{{i}}" (click)="deleteTicket($event, i, allMiddleTicketIds, 'Deleted')" class="ticket-menu" mat-icon-button>
+                    <mat-icon>delete</mat-icon>
+                </button>>
                 </mat-card>
             </mat-tab>
             <mat-tab label="Low">
                 <mat-card (click)="openDialog(allLowTicketIds[i])" *ngFor="let tickets of allLowTickets, , index as i"
                     class="ticket-container">
                     <mat-card-header>
-                        <mat-card-title>#{{allLowTickets[i]['ticketNumber']}}
-                            {{allLowTickets[i]['titel']}}</mat-card-title>
+                        <mat-card-title>#{{allLowTickets[i]['ticketNumber']}}</mat-card-title>
                         <mat-card-subtitle>{{allLowTickets[i]['company']}}</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>
@@ -59,9 +56,9 @@
                         <p class="late-by">Due by {{allLowDates[i]}}</p>
                     <div class="title">{{allLowTickets[i]['title']}}</div>
                 </mat-card-content>
-                    <button (click)="deleteTicket(i, allLowTicketIds)" class="ticket-menu" mat-icon-button>
-                        <mat-icon>delete</mat-icon>
-                    </button>
+                <button id="deleteButtonUrgent{{i}}" (click)="deleteTicket($event, i, allLowTicketIds, 'Deleted')" class="ticket-menu" mat-icon-button>
+                    <mat-icon>delete</mat-icon>
+                </button>
                 </mat-card>
             </mat-tab>
         </mat-tab-group>

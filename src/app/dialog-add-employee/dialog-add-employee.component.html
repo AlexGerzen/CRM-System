@@ -1,0 +1,48 @@
+<div class="dialog-container">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+    <h1 mat-dialog-title>Add Employee</h1>
+    <div mat-dialog-content>
+        <div class="padding-top-16">
+            <mat-form-field class="margin-right-16" appearance="outline">
+                <mat-label>Firstname</mat-label>
+                <input [disabled]="loading" [(ngModel)]="employee.firstName" matInput placeholder="Firstname">
+                <!-- <mat-hint>Please enter a name</mat-hint> -->
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Lastname</mat-label>
+                <input [disabled]="loading" [(ngModel)]="employee.lastName" matInput placeholder="Lastname">
+                <!-- <mat-hint>Please enter a name</mat-hint> -->
+            </mat-form-field>
+        </div>
+
+        <div class="padding-top-16">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>E-Mail</mat-label>
+                <input [disabled]="loading" [(ngModel)]="employee.email" matInput placeholder="E-Mail">
+                <!-- <mat-hint>Please enter your streetname and house no.</mat-hint> -->
+            </mat-form-field>
+        </div>
+
+        <div class="padding-top-16">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Phone number.</mat-label>
+                <input [disabled]="loading" [(ngModel)]="employee.phoneNumber" matInput placeholder="Phone number">
+                <!-- <mat-hint>Please enter your streetname and house no.</mat-hint> -->
+            </mat-form-field>
+        </div>
+
+        <div class="padding-top-16">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Position</mat-label>
+                <input [disabled]="loading" [(ngModel)]="employee.position" matInput placeholder="Position">
+                <!-- <mat-hint>Please enter your streetname and house no.</mat-hint> -->
+            </mat-form-field>
+        </div>
+
+    </div>
+    <div mat-dialog-actions class="button-container">
+        <button [disabled]="loading" (click)="safeEmployee()" color="primary" mat-raised-button>Safe</button>
+        <button [disabled]="loading" (click)="dialogRef.close()" mat-raised-button>Cancel</button>  
+    </div>
+</div>

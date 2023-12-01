@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Ticket } from 'src/models/ticket.class';
-import { Firestore, collection, doc, onSnapshot, deleteDoc } from '@angular/fire/firestore';
+import { Firestore, collection, doc, onSnapshot, deleteDoc, getDoc, addDoc } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogTicketInfoComponent } from '../dialog-ticket-info/dialog-ticket-info.component';
 
@@ -25,6 +25,8 @@ export class OpenTicketsComponent implements OnInit {
   allLowTicketIds = [];
   allLowDates = [];
 
+  deletedTicket: Ticket;
+
 
   private firestore: Firestore = inject(Firestore);
 
@@ -36,6 +38,7 @@ export class OpenTicketsComponent implements OnInit {
   ngOnInit(): void {
     onSnapshot(collection(this.firestore, 'tickets'), (ticket) => {
       this.clearAllTickets();
+      this.clearAllDates();
       ticket.forEach(ticketData => {
         this.allTickets.push(ticketData.data());
         this.allTicketIds.push(ticketData.id);
@@ -57,6 +60,12 @@ export class OpenTicketsComponent implements OnInit {
     this.allMiddleTicketIds = [];
     this.allLowTickets = [];
     this.allLowTicketIds = [];
+  }
+
+  clearAllDates() {
+    this.allLowDates = [];
+    this.allMiddleDates = [];
+    this.allUrgentDates = [];
   }
 
   transformDates(datesArray, ticketArray) {
@@ -89,9 +98,24 @@ export class OpenTicketsComponent implements OnInit {
 
   }
 
-  deleteTicket(index, urgencyIdArray) {
-    let docId = urgencyIdArray[index];
+  deleteTicket(event: Event, index: number, urgencyIdArray: string[], deleteInfo: 'Deleted' | 'Finished'): void {
+    event.stopPropagation();
 
+    let docId = urgencyIdArray[index];
+    this.addToHistory(docId, deleteInfo);
+    this.deleteDocument(docId);
+  }
+
+  openDialog(docId) {
+    this.dialog.open(DialogTicketInfoComponent, {
+      data: {
+        id: docId,
+        collection: 'tickets'
+      },
+    });
+  }
+
+  deleteDocument(docId) {
     deleteDoc(doc(collection(this.firestore, 'tickets'), docId))
       .then(() => { })
       .catch((error) => {
@@ -99,11 +123,27 @@ export class OpenTicketsComponent implements OnInit {
       });
   }
 
-  openDialog(docId) {
-    this.dialog.open(DialogTicketInfoComponent, {
-      data: {
-        id: docId,
-      },
-    });
+  async addToHistory(docId, deleteInfo) {
+    await this.getDocument(docId)
+    this.deletedTicket.ticketStatus = deleteInfo;
+    this.addDocument();
+  }
+
+  async getDocument(docId) {
+    await getDoc(doc(collection(this.firestore, 'tickets'), docId))
+      .then((docSnapshot) => {
+        if (docSnapshot.exists()) {
+          this.deletedTicket = new Ticket(docSnapshot.data());
+        } else {
+          console.log('Dokument nicht gefunden.');
+        }
+      })
+      .catch((error) => {
+        console.error('Fehler beim Auslesen des Dokuments:', error);
+      });
+  }
+
+  async addDocument() {
+    await addDoc(collection(this.firestore, 'ticketHistory'), this.deletedTicket.toJson())
   }
 }

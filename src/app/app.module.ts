@@ -37,6 +37,9 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { DialogTicketInfoComponent } from './dialog-ticket-info/dialog-ticket-info.component';
 import { CommonModule, DatePipe } from '@angular/common';
+import { FinishedTicketsComponent } from './finished-tickets/finished-tickets.component';
+import { EmployeesComponent } from './employees/employees.component';
+import { DialogAddEmployeeComponent } from './dialog-add-employee/dialog-add-employee.component';
 
 
 
@@ -55,7 +58,10 @@ import { CommonModule, DatePipe } from '@angular/common';
     CustomersComponent,
     DialogAddCustomerComponent,
     AddTicketComponent,
-    DialogTicketInfoComponent
+    DialogTicketInfoComponent,
+    FinishedTicketsComponent,
+    EmployeesComponent,
+    DialogAddEmployeeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,8 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Firestore, collection, doc, getDoc, setDoc } from '@angular/fire/firestore';
+import { Firestore, collection, doc, getDoc, setDoc, addDoc, deleteDoc } from '@angular/fire/firestore';
 import { Ticket } from 'src/models/ticket.class';
+import { OpenTicketsComponent } from '../open-tickets/open-tickets.component';
 
 @Component({
   selector: 'app-dialog-ticket-info',
@@ -21,11 +22,11 @@ export class DialogTicketInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getDocument();
+    this.getDocument(this.data.collection);
   }
 
-  async getDocument() {
-    await getDoc(doc(collection(this.firestore, 'tickets'), this.data.id))
+  async getDocument(id) {
+    await getDoc(doc(collection(this.firestore, id), this.data.id))
       .then((docSnapshot) => {
         if (docSnapshot.exists()) {
           this.ticketInfo = new Ticket(docSnapshot.data());
@@ -68,5 +69,28 @@ export class DialogTicketInfoComponent implements OnInit {
     this.ticketInfoCopy.dueDate = this.ticketInfoCopyDate.getTime();
     await (setDoc(doc(collection(this.firestore, 'tickets'), this.data.id), this.ticketInfoCopy.toJson()));
     this.dialogRef.close();
+  }
+
+  async deleteTicket() {
+    await this.addToHistory();
+    this.deleteDocument();
+    this.dialogRef.close();
+  }
+
+  async addToHistory() {
+    this.ticketInfo.ticketStatus = 'Finished';
+    await this.addDocument();
+  }
+
+  async addDocument() {
+    await addDoc(collection(this.firestore, 'ticketHistory'), this.ticketInfo.toJson())
+  }
+
+  deleteDocument() {
+    deleteDoc(doc(collection(this.firestore, 'tickets'), this.data.id))
+      .then(() => { })
+      .catch((error) => {
+        console.error('Fehler beim Löschen des Dokuments:', error);
+      });
   }
 }
