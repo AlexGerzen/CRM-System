@@ -41,9 +41,12 @@ import { FinishedTicketsComponent } from './finished-tickets/finished-tickets.co
 import { EmployeesComponent } from './employees/employees.component';
 import { DialogAddEmployeeComponent } from './dialog-add-employee/dialog-add-employee.component';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { ClockComponent } from './clock/clock.component';
 import { DashboardTotalTicketsComponent } from './dashboard-total-tickets/dashboard-total-tickets.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
+=======
+>>>>>>> parent of 1bf57f9 (Added dashboard-total-tickets)
 =======
 >>>>>>> parent of 1bf57f9 (Added dashboard-total-tickets)
 
@@ -68,10 +71,14 @@ import { LineChartComponent } from './line-chart/line-chart.component';
     FinishedTicketsComponent,
     EmployeesComponent,
 <<<<<<< HEAD
+<<<<<<< HEAD
     DialogAddEmployeeComponent,
     ClockComponent,
     DashboardTotalTicketsComponent,
     LineChartComponent
+=======
+    DialogAddEmployeeComponent
+>>>>>>> parent of 1bf57f9 (Added dashboard-total-tickets)
 =======
     DialogAddEmployeeComponent
 >>>>>>> parent of 1bf57f9 (Added dashboard-total-tickets)
