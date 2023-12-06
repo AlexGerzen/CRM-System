@@ -40,6 +40,8 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { FinishedTicketsComponent } from './finished-tickets/finished-tickets.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { DialogAddEmployeeComponent } from './dialog-add-employee/dialog-add-employee.component';
+import { ClockComponent } from './clock/clock.component';
+import { DashboardTotalTicketsComponent } from './dashboard-total-tickets/dashboard-total-tickets.component';
 
 
 
@@ -61,7 +63,9 @@ import { DialogAddEmployeeComponent } from './dialog-add-employee/dialog-add-emp
     DialogTicketInfoComponent,
     FinishedTicketsComponent,
     EmployeesComponent,
-    DialogAddEmployeeComponent
+    DialogAddEmployeeComponent,
+    ClockComponent,
+    DashboardTotalTicketsComponent
   ],
   imports: [
     BrowserModule,

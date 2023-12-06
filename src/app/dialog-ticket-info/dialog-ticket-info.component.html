@@ -90,6 +90,7 @@
                     <mat-label>Select the employee</mat-label>
                     <mat-select [(ngModel)]="ticketInfoCopy.assignedEmployee">
                         <mat-option value="None">None</mat-option>
+                        <mat-option *ngFor="let employee of allEmployees, index as i" value="{{allEmployees[i]['firstName']}} {{allEmployees[i]['lastName']}}">{{allEmployees[i]['firstName']}} {{allEmployees[i]['lastName']}}</mat-option>
                     </mat-select>
                     <mat-error>Error</mat-error>
                 </mat-form-field>

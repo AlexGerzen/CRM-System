@@ -60,6 +60,17 @@
                 </mat-form-field>
             </div>
 
+            <div class="formfields-container padding-top-16">
+                <mat-form-field class="width-500px">
+                    <mat-label>Select the employee</mat-label>
+                    <mat-select [disabled]="loading" [(ngModel)]="ticket.assignedEmployee" [formControl]="employee">
+                        <mat-option value="None">None</mat-option>
+                        <mat-option *ngFor="let employee of allEmployees, index as i" value="{{allEmployees[i]['firstName']}} {{allEmployees[i]['lastName']}}">{{allEmployees[i]['firstName']}} {{allEmployees[i]['lastName']}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="showEmployeeError">{{ getErrorMessage("Employee") }}</mat-error>
+                </mat-form-field>
+            </div>
+
         </div>
 
         <mat-card-actions>
