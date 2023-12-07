@@ -97,11 +97,11 @@ export class OpenTicketsComponent implements OnInit {
     }
   }
 
-  deleteTicket(event: Event, index: number, urgencyIdArray: string[], deleteInfo: 'Deleted' | 'Finished'): void {
+  async deleteTicket(event: Event, index: number, urgencyIdArray: string[], deleteInfo: 'Deleted' | 'Finished') {
     event.stopPropagation();
 
     let docId = urgencyIdArray[index];
-    this.addToHistory(docId, deleteInfo);
+    await this.addToHistory(docId, deleteInfo);
     this.deleteDocument(docId);
   }
 
