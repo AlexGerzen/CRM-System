@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -40,15 +39,6 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { FinishedTicketsComponent } from './finished-tickets/finished-tickets.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { DialogAddEmployeeComponent } from './dialog-add-employee/dialog-add-employee.component';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { ClockComponent } from './clock/clock.component';
-import { DashboardTotalTicketsComponent } from './dashboard-total-tickets/dashboard-total-tickets.component';
-import { LineChartComponent } from './line-chart/line-chart.component';
-=======
->>>>>>> parent of 1bf57f9 (Added dashboard-total-tickets)
-=======
->>>>>>> parent of 1bf57f9 (Added dashboard-total-tickets)
 
 
 
@@ -70,18 +60,7 @@ import { LineChartComponent } from './line-chart/line-chart.component';
     DialogTicketInfoComponent,
     FinishedTicketsComponent,
     EmployeesComponent,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    DialogAddEmployeeComponent,
-    ClockComponent,
-    DashboardTotalTicketsComponent,
-    LineChartComponent
-=======
     DialogAddEmployeeComponent
->>>>>>> parent of 1bf57f9 (Added dashboard-total-tickets)
-=======
-    DialogAddEmployeeComponent
->>>>>>> parent of 1bf57f9 (Added dashboard-total-tickets)
   ],
   imports: [
     BrowserModule,
