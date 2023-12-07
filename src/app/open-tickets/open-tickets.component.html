@@ -9,17 +9,14 @@
                         <mat-card-subtitle>{{allUrgentTickets[i]['company']}}</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>
-                        <div class="bottom-left">
-                            <p>Contact: {{allUrgentTickets[i]['contact']}}</p>
-                            <p>{{allUrgentTickets[i]['ticketStatus']}}</p>
-                        </div>
-                        <p class="late-by">Due by {{allUrgentDates[i]}}</p>
+                            <div class="bottom-left">
+                                <p>Contact: {{allUrgentTickets[i]['contact']}}</p>
+                                <p>{{allUrgentTickets[i]['ticketStatus']}}</p>
+                            </div>
+                            <p class="late-by">Due by {{allUrgentDates[i]}}</p>
                         <div class="title">{{allUrgentTickets[i]['title']}}</div>
                     </mat-card-content>
-                    <p class="assignedEmployee">Assigned Employee: {{allUrgentTickets[i]['assignedEmployee']}}</p>
-                    <button id="deleteButtonUrgent{{i}}"
-                        (click)="deleteTicket($event, i, allUrgentTicketIds, 'Deleted')" class="ticket-menu"
-                        mat-icon-button>
+                    <button id="deleteButtonUrgent{{i}}" (click)="deleteTicket($event, i, allUrgentTicketIds, 'Deleted')" class="ticket-menu" mat-icon-button>
                         <mat-icon>delete</mat-icon>
                     </button>
                 </mat-card>
@@ -37,14 +34,11 @@
                             <p>{{allMiddleTickets[i]['ticketStatus']}}</p>
                         </div>
                         <p class="late-by">Due by {{allMiddleDates[i]}}</p>
-                        <div class="title">{{allMiddleTickets[i]['title']}}</div>
-                    </mat-card-content>
-                    <p class="assignedEmployee">Assigned Employee: {{allMiddleTickets[i]['assignedEmployee']}}</p>
-                    <button id="deleteButtonUrgent{{i}}"
-                        (click)="deleteTicket($event, i, allMiddleTicketIds, 'Deleted')" class="ticket-menu"
-                        mat-icon-button>
-                        <mat-icon>delete</mat-icon>
-                    </button>>
+                    <div class="title">{{allMiddleTickets[i]['title']}}</div>
+                </mat-card-content>
+                <button id="deleteButtonUrgent{{i}}" (click)="deleteTicket($event, i, allMiddleTicketIds, 'Deleted')" class="ticket-menu" mat-icon-button>
+                    <mat-icon>delete</mat-icon>
+                </button>>
                 </mat-card>
             </mat-tab>
             <mat-tab label="Low">
@@ -54,19 +48,17 @@
                         <mat-card-title>#{{allLowTickets[i]['ticketNumber']}}</mat-card-title>
                         <mat-card-subtitle>{{allLowTickets[i]['company']}}</mat-card-subtitle>
                     </mat-card-header>
-                    <mat-card-content>                       
+                    <mat-card-content>
                         <div class="bottom-left">
                             <p>Contact: {{allLowTickets[i]['contact']}}</p>
                             <p>{{allLowTickets[i]['ticketStatus']}}</p>
                         </div>
                         <p class="late-by">Due by {{allLowDates[i]}}</p>
-                        <div class="title">{{allLowTickets[i]['title']}}</div>
-                    </mat-card-content>
-                    <p class="assignedEmployee">Assigned Employee: {{allLowTickets[i]['assignedEmployee']}}</p>
-                    <button id="deleteButtonUrgent{{i}}" (click)="deleteTicket($event, i, allLowTicketIds, 'Deleted')"
-                        class="ticket-menu" mat-icon-button>
-                        <mat-icon>delete</mat-icon>
-                    </button>
+                    <div class="title">{{allLowTickets[i]['title']}}</div>
+                </mat-card-content>
+                <button id="deleteButtonUrgent{{i}}" (click)="deleteTicket($event, i, allLowTicketIds, 'Deleted')" class="ticket-menu" mat-icon-button>
+                    <mat-icon>delete</mat-icon>
+                </button>
                 </mat-card>
             </mat-tab>
         </mat-tab-group>

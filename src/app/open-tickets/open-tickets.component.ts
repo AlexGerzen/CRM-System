@@ -95,6 +95,7 @@ export class OpenTicketsComponent implements OnInit {
         this.allLowTicketIds.push(this.allTicketIds[i]);
       }
     }
+
   }
 
   deleteTicket(event: Event, index: number, urgencyIdArray: string[], deleteInfo: 'Deleted' | 'Finished'): void {
