@@ -42,6 +42,8 @@ import { EmployeesComponent } from './employees/employees.component';
 import { DialogAddEmployeeComponent } from './dialog-add-employee/dialog-add-employee.component';
 import { ClockComponent } from './clock/clock.component';
 import { DashboardTotalTicketsComponent } from './dashboard-total-tickets/dashboard-total-tickets.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 
 
@@ -65,7 +67,8 @@ import { DashboardTotalTicketsComponent } from './dashboard-total-tickets/dashbo
     EmployeesComponent,
     DialogAddEmployeeComponent,
     ClockComponent,
-    DashboardTotalTicketsComponent
+    DashboardTotalTicketsComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +87,7 @@ import { DashboardTotalTicketsComponent } from './dashboard-total-tickets/dashbo
     MatTooltipModule,
     MatDialogModule,
     MatInputModule,
+    NgApexchartsModule,
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
