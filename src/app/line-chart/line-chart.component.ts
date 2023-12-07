@@ -8,7 +8,8 @@ import {
   ApexDataLabels,
   ApexTitleSubtitle,
   ApexStroke,
-  ApexGrid
+  ApexGrid,
+  ApexYAxis
 } from "ng-apexcharts";
 
 export type ChartOptions = {
@@ -19,6 +20,7 @@ export type ChartOptions = {
   grid: ApexGrid;
   stroke: ApexStroke;
   title: ApexTitleSubtitle;
+  yaxis: ApexYAxis;
 };
 
 @Component({
@@ -31,11 +33,15 @@ export class LineChartComponent {
   public chartOptions: Partial<ChartOptions>;
 
   constructor() {
+    this.generateChart();
+  }
+
+  generateChart() {
     this.chartOptions = {
       series: [
         {
           name: "Desktops",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+          data: [10, 41, 35, 51, 49, 62, 69, 91, 105, 123, 87, 75]
         }
       ],
       chart: {
@@ -57,8 +63,15 @@ export class LineChartComponent {
       },
       grid: {
         row: {
-          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+          colors: ["green", "red"], // takes an array which will be repeated on columns
           opacity: 0.5
+        }
+      },
+      yaxis: {
+        labels: {
+          style: {
+            colors: 'white'
+          }
         }
       },
       xaxis: {
@@ -71,9 +84,18 @@ export class LineChartComponent {
           "Jun",
           "Jul",
           "Aug",
-          "Sep"
-        ]
-      }
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dez"
+        ],
+        labels: {
+          style: {
+            colors: 'white'
+          }
+        }
+      },
     };
   }
+
 }
