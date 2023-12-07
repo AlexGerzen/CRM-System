@@ -15,6 +15,7 @@
                 <p class="late-by">Due by {{allDates[i]}}</p>
                 <div class="title">{{allTickets[i]['title']}}</div>
             </mat-card-content>
+            <p class="assignedEmployee">Assigned Employee: {{allTickets[i]['assignedEmployee']}}</p>
             <button (click)="deleteTicket($event, i)" class="ticket-menu" mat-icon-button>
                 <mat-icon>delete</mat-icon>
             </button>

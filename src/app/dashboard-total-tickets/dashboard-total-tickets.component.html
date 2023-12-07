@@ -1,0 +1,16 @@
+<mat-card>
+    <mat-card-content>
+        <div class="total-tickets-container">
+            <div class="left-container">
+                <p class="total-tickets">Total Tickets</p>
+                <p class="total-tickets-number">{{allTickets.length}}</p>
+            </div>
+
+            <div class="right-container">
+                <p class="high">High Prio: {{allUrgentTickets.length}}</p>
+                <p class="middle">Middle Prio: {{allMiddleTickets.length}}</p>
+                <p class="low">Low Prio: {{allLowTickets.length}}</p>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

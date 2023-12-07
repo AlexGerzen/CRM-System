@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, onSnapshot } from '@angular/fire/firestore';
 import { Ticket } from 'src/models/ticket.class';
 import { FormControl } from '@angular/forms';
 
@@ -15,17 +15,20 @@ export class AddTicketComponent implements OnInit {
   urgency = new FormControl('', [Validators.required]);
   description = new FormControl('', [Validators.required]);
   company = new FormControl('', [Validators.required]);
+  employee = new FormControl('', [Validators.required]);
 
   showTitleError: boolean = false;
   showContactError: boolean = false;
   showCompanyError: boolean = false;
   showDescriptionError: boolean = false;
   showUrgencyError: boolean = false;
+  showEmployeeError: boolean = false;
 
   ticket = new Ticket();
   loading: boolean = false;
   dueDate: Date;
   date;
+  allEmployees = [];
 
   private firestore: Firestore = inject(Firestore);
 
@@ -34,7 +37,7 @@ export class AddTicketComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.getEmployees();
   }
 
   async safeTicket() {
@@ -50,6 +53,15 @@ export class AddTicketComponent implements OnInit {
       this.loading = false;
     }
 
+  }
+
+  getEmployees() {
+    onSnapshot(collection(this.firestore, 'employees'), (employees) => {
+      this.allEmployees = [];
+      employees.forEach( employee => {
+        this.allEmployees.push(employee.data())
+      })
+    })
   }
 
   createTicketnumber() {
@@ -91,6 +103,7 @@ export class AddTicketComponent implements OnInit {
     this.showCompanyError = false;
     this.showDescriptionError = false;
     this.showUrgencyError = false;
+    this.showEmployeeError = false;
   }
 
   checkFields() {
@@ -114,6 +127,10 @@ export class AddTicketComponent implements OnInit {
     }
     if (this.urgency.invalid) {
       this.showUrgencyError = true;
+      return false;
+    }
+    if (this.employee.invalid) {
+      this.showEmployeeError = true;
       return false;
     }
     return true;

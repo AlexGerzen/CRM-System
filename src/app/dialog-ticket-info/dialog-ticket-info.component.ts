@@ -1,6 +1,6 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Firestore, collection, doc, getDoc, setDoc, addDoc, deleteDoc } from '@angular/fire/firestore';
+import { Firestore, collection, doc, getDoc, setDoc, addDoc, deleteDoc, onSnapshot } from '@angular/fire/firestore';
 import { Ticket } from 'src/models/ticket.class';
 import { OpenTicketsComponent } from '../open-tickets/open-tickets.component';
 
@@ -15,6 +15,7 @@ export class DialogTicketInfoComponent implements OnInit {
   ticketInfoCopy: Ticket;
   ticketInfoCopyDate: Date;
   edit: boolean = false;
+  allEmployees = [];
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DialogTicketInfoComponent>) {
@@ -23,6 +24,7 @@ export class DialogTicketInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDocument(this.data.collection);
+    this.getEmployees();
   }
 
   async getDocument(id) {
@@ -37,6 +39,15 @@ export class DialogTicketInfoComponent implements OnInit {
       .catch((error) => {
         console.error('Fehler beim Auslesen des Dokuments:', error);
       });
+  }
+
+  getEmployees() {
+    onSnapshot(collection(this.firestore, 'employees'), (employees) => {
+      this.allEmployees = [];
+      employees.forEach( employee => {
+        this.allEmployees.push(employee.data())
+      })
+    })
   }
 
   transformDate(rawDate) {

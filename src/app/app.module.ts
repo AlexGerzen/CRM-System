@@ -65,7 +65,7 @@ import { DashboardTotalTicketsComponent } from './dashboard-total-tickets/dashbo
     EmployeesComponent,
     DialogAddEmployeeComponent,
     ClockComponent,
-  
+    DashboardTotalTicketsComponent
   ],
   imports: [
     BrowserModule,
