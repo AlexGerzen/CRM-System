@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-content>
         <mat-tab-group>
-            <mat-tab label="Urgent">
+            <mat-tab label="High Prio">
                 <mat-card (click)="openDialog(allUrgentTicketIds[i])"
                     *ngFor="let tickets of allUrgentTickets, , index as i" class="ticket-container">
                     <mat-card-header>
@@ -24,7 +24,7 @@
                     </button>
                 </mat-card>
             </mat-tab>
-            <mat-tab label="Middle">
+            <mat-tab label="Middle Prio">
                 <mat-card (click)="openDialog(allMiddleTicketIds[i])"
                     *ngFor="let tickets of allMiddleTickets, , index as i" class="ticket-container">
                     <mat-card-header>
@@ -44,10 +44,10 @@
                         (click)="deleteTicket($event, i, allMiddleTicketIds, 'Deleted')" class="ticket-menu"
                         mat-icon-button>
                         <mat-icon>delete</mat-icon>
-                    </button>>
+                    </button>
                 </mat-card>
             </mat-tab>
-            <mat-tab label="Low">
+            <mat-tab label="Low Prio">
                 <mat-card (click)="openDialog(allLowTicketIds[i])" *ngFor="let tickets of allLowTickets, , index as i"
                     class="ticket-container">
                     <mat-card-header>
