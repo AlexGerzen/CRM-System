@@ -4,45 +4,47 @@
             <mat-card-title>Add Ticket</mat-card-title>
             <mat-card-subtitle>Fields with "*" are required</mat-card-subtitle>
         </mat-card-header>
-        <form class="formfields-container">
+        <form [formGroup]="ticketForm" class="formfields-container">
 
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Enter the titel</mat-label>
-                    <input [disabled]="loading" [(ngModel)]="ticket.title" matInput placeholder="Titel" [formControl]="titel">
-                    <mat-error *ngIf="showTitleError">{{ getErrorMessage("Titel") }}</mat-error>
+                    <input [disabled]="loading" matInput placeholder="Titel" formControlName="title">
+                    <mat-hint *ngIf="showTitleError">
+                        {{ getErrorMessage("Titel") }}
+                    </mat-hint>
                 </mat-form-field>
             </div>
 
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Description</mat-label>
-                    <textarea [disabled]="loading" [(ngModel)]="ticket.description" [formControl]="description" matInput></textarea>
-                    <mat-error *ngIf="showDescriptionError">{{ getErrorMessage("Description") }}</mat-error>
+                    <textarea [disabled]="loading" formControlName="description" matInput></textarea>
+                    <mat-hint *ngIf="showDescriptionError">{{ getErrorMessage("Description") }}</mat-hint>
                 </mat-form-field>
             </div>
 
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Enter the company name</mat-label>
-                    <input [disabled]="loading" [(ngModel)]="ticket.company" matInput placeholder="Company name" [formControl]="company">
-                    <mat-error *ngIf="showCompanyError">{{ getErrorMessage("Company name") }}</mat-error>
+                    <input [disabled]="loading" matInput placeholder="Company name" formControlName="company">
+                    <mat-hint *ngIf="showCompanyError">{{ getErrorMessage("Company name") }}</mat-hint>
                 </mat-form-field>
             </div>
 
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Enter the contact mail</mat-label>
-                    <input [disabled]="loading" [(ngModel)]="ticket.contact" matInput placeholder="example@example.com" [formControl]="contact">
-                    <mat-error *ngIf="showContactError">{{ getErrorMessageEmail() }}</mat-error>
+                    <input [disabled]="loading" matInput placeholder="example@example.com" formControlName="contact">
+                    <mat-hint *ngIf="showContactError">{{ getErrorMessageEmail() }}</mat-hint>
                 </mat-form-field>
             </div>
 
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Due date</mat-label>
-                    <input [disabled]="loading" [(ngModel)]="dueDate" matInput [matDatepicker]="picker">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <input formControlName="dueDate" [disabled]="loading" matInput [matDatepicker]="picker">
+                    <mat-hint class="color-white">MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
@@ -51,30 +53,32 @@
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Select the priority</mat-label>
-                    <mat-select [disabled]="loading" [(ngModel)]="ticket.urgency" [formControl]="urgency">
+                    <mat-select [disabled]="loading" formControlName="urgency">
                         <mat-option value="Urgent">High Prio</mat-option>
                         <mat-option value="Middle">Middle Prio</mat-option>
                         <mat-option value="Low">Low Prio</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="showUrgencyError">{{ getErrorMessage("Urgency") }}</mat-error>
+                    <mat-hint *ngIf="showUrgencyError">{{ getErrorMessage("Urgency") }}</mat-hint>
                 </mat-form-field>
             </div>
 
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Select the employee</mat-label>
-                    <mat-select [disabled]="loading" [(ngModel)]="ticket.assignedEmployee" [formControl]="employee">
+                    <mat-select [disabled]="loading" formControlName="employee">
                         <mat-option value="None">None</mat-option>
-                        <mat-option *ngFor="let employee of allEmployees, index as i" value="{{allEmployees[i]['firstName']}} {{allEmployees[i]['lastName']}}">{{allEmployees[i]['firstName']}} {{allEmployees[i]['lastName']}}</mat-option>
+                        <mat-option *ngFor="let employee of allEmployees, index as i"
+                            value="{{allEmployees[i]['firstName']}} {{allEmployees[i]['lastName']}}">{{allEmployees[i]['firstName']}}
+                            {{allEmployees[i]['lastName']}}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="showEmployeeError">{{ getErrorMessage("Employee") }}</mat-error>
+                    <mat-hint *ngIf="showEmployeeError">{{ getErrorMessage("Employee") }}</mat-hint>
                 </mat-form-field>
             </div>
 
         </form>
 
         <mat-card-actions>
-            <button [disabled]="loading" (click)="safeTicket()" color="primary" mat-raised-button>SAFE</button>
+            <button [disabled]="loading" (click)="safeTicket()" color="primary" mat-raised-button>Safe</button>
         </mat-card-actions>
 
     </mat-card-content>

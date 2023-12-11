@@ -10,12 +10,7 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./add-ticket.component.scss']
 })
 export class AddTicketComponent implements OnInit {
-  contact = new FormControl('', [Validators.required, Validators.email]);
-  titel = new FormControl('', [Validators.required]);
-  urgency = new FormControl('', [Validators.required]);
-  description = new FormControl('', [Validators.required]);
-  company = new FormControl('', [Validators.required]);
-  employee = new FormControl('', [Validators.required]);
+  ticketForm: FormGroup;
 
   showTitleError: boolean = false;
   showContactError: boolean = false;
@@ -32,33 +27,53 @@ export class AddTicketComponent implements OnInit {
 
   private firestore: Firestore = inject(Firestore);
 
-  constructor() {
-
+  constructor(private fb: FormBuilder) {
+    this.ticketForm = this.fb.group({
+      title: ['', [Validators.required]],
+      contact: ['', [Validators.required, Validators.email]],
+      urgency: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      company: ['', [Validators.required]],
+      employee: ['', [Validators.required]],
+      dueDate: [],
+    });
   }
 
   ngOnInit() {
     this.getEmployees();
   }
 
-  async safeTicket() {
+  safeTicket() {
+    console.log(this.ticketForm.controls['title'].value);
+
     if (this.checkFields()) {
       this.loading = true;
-      this.ticket.dueDate = this.dueDate.getTime();
-      this.date = new Date();
-      this.ticket.date = this.date.getTime();
-      this.ticket.ticketNumber = this.createTicketnumber();
-      this.ticket.ticketStatus = "Requested"
-      await this.addDocument();
-      this.clearFields()
-      this.loading = false;
+      this.setTicket();
+      this.addDocument().then(() => {
+        this.clearFields();
+        this.loading = false;
+      });
     }
+  }
 
+  setTicket() {
+    this.ticket.title = this.ticketForm.controls['title'].value;
+    this.ticket.description = this.ticketForm.controls['description'].value;
+    this.ticket.contact = this.ticketForm.controls['contact'].value;
+    this.ticket.company = this.ticketForm.controls['company'].value;
+    this.ticket.assignedEmployee = this.ticketForm.controls['employee'].value;
+    this.ticket.urgency = this.ticketForm.controls['urgency'].value;
+    this.date = new Date();
+    this.ticket.date = this.date.getTime();
+    this.ticket.ticketStatus = "Requested";
+    this.ticket.ticketNumber = this.createTicketnumber();
+    this.ticket.dueDate = this.ticketForm.controls['dueDate'].value.getTime();
   }
 
   getEmployees() {
     onSnapshot(collection(this.firestore, 'employees'), (employees) => {
       this.allEmployees = [];
-      employees.forEach( employee => {
+      employees.forEach(employee => {
         this.allEmployees.push(employee.data())
       })
     })
@@ -78,10 +93,12 @@ export class AddTicketComponent implements OnInit {
   }
 
   getErrorMessageEmail() {
-    if (this.contact.hasError('required')) {
+    const controls = this.ticketForm.controls;
+
+    if (controls['contact'].hasError('required')) {
       return 'Email is required';
     }
-    return this.contact.hasError('email') ? 'Not a valid email' : '';
+    return controls['contact'].hasError('email') ? 'Not a valid email' : '';
   }
 
   getErrorMessage(field: string) {
@@ -109,27 +126,29 @@ export class AddTicketComponent implements OnInit {
   checkFields() {
     this.hideAllErrors();
 
-    if (this.titel.invalid) {
+    const controls = this.ticketForm.controls;
+
+    if (controls['title'].hasError('required')) {
       this.showTitleError = true;
       return false;
     }
-    if (this.description.invalid) {
+    if (controls['description'].hasError('required')) {
       this.showDescriptionError = true;
       return false;
     }
-    if (this.company.invalid) {
+    if (controls['company'].hasError('required')) {
       this.showCompanyError = true;
       return false;
     }
-    if (this.contact.invalid) {
+    if (controls['contact'].hasError('required')) {
       this.showContactError = true;
       return false;
     }
-    if (this.urgency.invalid) {
+    if (controls['urgency'].hasError('required')) {
       this.showUrgencyError = true;
       return false;
     }
-    if (this.employee.invalid) {
+    if (controls['employee'].hasError('required')) {
       this.showEmployeeError = true;
       return false;
     }
