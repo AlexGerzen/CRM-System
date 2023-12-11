@@ -10,7 +10,8 @@ import {
   ApexTitleSubtitle,
   ApexStroke,
   ApexGrid,
-  ApexYAxis
+  ApexYAxis,
+  ApexTooltip
 } from "ng-apexcharts";
 
 export type ChartOptions = {
@@ -22,6 +23,7 @@ export type ChartOptions = {
   stroke: ApexStroke;
   title: ApexTitleSubtitle;
   yaxis: ApexYAxis;
+  tooltip: ApexTooltip;
 };
 
 @Component({
@@ -171,6 +173,18 @@ export class LineChartComponent {
         toolbar: {
           show: false,
         }
+      },
+      tooltip: {
+        theme: 'dark', // Wähle ein Tooltip-Thema (dark, light)
+        x: {
+          show: true, // Zeige X-Wert im Tooltip
+        },
+        y: {
+          formatter: function (val) {
+            return val + " Einheiten"; // Passe das Y-Wert-Format an
+          }
+        }
+        // Weitere Tooltip-Optionen hier
       },
       dataLabels: {
         enabled: false

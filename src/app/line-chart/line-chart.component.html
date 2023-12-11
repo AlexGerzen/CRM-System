@@ -3,7 +3,7 @@
         <div *ngIf="showChart" id="chart">
             <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
                 [dataLabels]="chartOptions.dataLabels" [grid]="chartOptions.grid" [stroke]="chartOptions.stroke"
-                [title]="chartOptions.title" [yaxis]="chartOptions.yaxis">
+                [title]="chartOptions.title" [yaxis]="chartOptions.yaxis" [tooltip]="chartOptions.tooltip">
             </apx-chart>
         </div>
     </mat-card-content>
