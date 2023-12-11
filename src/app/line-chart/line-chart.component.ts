@@ -175,16 +175,15 @@ export class LineChartComponent {
         }
       },
       tooltip: {
-        theme: 'dark', // Wähle ein Tooltip-Thema (dark, light)
+        theme: 'dark',
         x: {
-          show: true, // Zeige X-Wert im Tooltip
+          show: true,
         },
         y: {
           formatter: function (val) {
-            return val + " Einheiten"; // Passe das Y-Wert-Format an
+            return val + " Einheiten"; 
           }
         }
-        // Weitere Tooltip-Optionen hier
       },
       dataLabels: {
         enabled: false

@@ -46,3 +46,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .cdk-global-scrollblock {
     overflow-y: auto;
 }
+
+mat-drawer-content {
+    overflow-y: hidden !important;
+    max-height: 100%;
+}

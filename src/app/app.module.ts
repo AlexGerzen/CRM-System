@@ -44,6 +44,7 @@ import { ClockComponent } from './clock/clock.component';
 import { DashboardTotalTicketsComponent } from './dashboard-total-tickets/dashboard-total-tickets.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { NgApexchartsModule } from "ng-apexcharts";
+import { PieChartComponent } from './pie-chart/pie-chart.component';
 
 
 
@@ -68,7 +69,8 @@ import { NgApexchartsModule } from "ng-apexcharts";
     DialogAddEmployeeComponent,
     ClockComponent,
     DashboardTotalTicketsComponent,
-    LineChartComponent
+    LineChartComponent,
+    PieChartComponent
   ],
   imports: [
     BrowserModule,
