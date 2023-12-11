@@ -57,6 +57,7 @@ mat-toolbar, mat-toolbar-row {
     padding-right: 56px;
     padding-top: 16px;
     padding-bottom: 16px;
+    height: calc(100% - 56px);
 }
 
 .highlight-background {
@@ -68,5 +69,10 @@ app-clock {
     left: calc(50% - 200px);
     width: 400px;
     min-width: 400px;
+}
+
+.sidenav-content {
+    height: 100%;
+    max-height: 100%;
 }
 

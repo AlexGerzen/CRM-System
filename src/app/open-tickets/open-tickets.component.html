@@ -1,27 +1,29 @@
-<mat-card>
-    <mat-card-content>
-        <mat-tab-group>
+<mat-card class="height-100">
+    <mat-card-content class="height-100">
+        <mat-tab-group class="height-100">
             <mat-tab label="High Prio">
-                <mat-card (click)="openDialog(allUrgentTicketIds[i])"
+                <mat-card class="height-100" class="all-tickets">
+                    <div  (click)="openDialog(allUrgentTicketIds[i])"
                     *ngFor="let tickets of allUrgentTickets, , index as i" class="ticket-container">
-                    <mat-card-header>
-                        <mat-card-title>#{{allUrgentTickets[i]['ticketNumber']}}</mat-card-title>
-                        <mat-card-subtitle>{{allUrgentTickets[i]['company']}}</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <div class="bottom-left">
-                            <p>Contact: {{allUrgentTickets[i]['contact']}}</p>
-                            <p>{{allUrgentTickets[i]['ticketStatus']}}</p>
-                        </div>
-                        <p class="late-by">Due by {{allUrgentDates[i]}}</p>
-                        <div class="title">{{allUrgentTickets[i]['title']}}</div>
-                    </mat-card-content>
-                    <p class="assignedEmployee">Assigned Employee: {{allUrgentTickets[i]['assignedEmployee']}}</p>
-                    <button id="deleteButtonUrgent{{i}}"
-                        (click)="deleteTicket($event, i, allUrgentTicketIds, 'Deleted')" class="ticket-menu"
-                        mat-icon-button>
-                        <mat-icon>delete</mat-icon>
-                    </button>
+                        <mat-card-header>
+                            <mat-card-title>#{{allUrgentTickets[i]['ticketNumber']}}</mat-card-title>
+                            <mat-card-subtitle>{{allUrgentTickets[i]['company']}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <div class="bottom-left">
+                                <p>Contact: {{allUrgentTickets[i]['contact']}}</p>
+                                <p>{{allUrgentTickets[i]['ticketStatus']}}</p>
+                            </div>
+                            <p class="late-by">Due by {{allUrgentDates[i]}}</p>
+                            <div class="title">{{allUrgentTickets[i]['title']}}</div>
+                        </mat-card-content>
+                        <p class="assignedEmployee">Assigned Employee: {{allUrgentTickets[i]['assignedEmployee']}}</p>
+                        <button id="deleteButtonUrgent{{i}}"
+                            (click)="deleteTicket($event, i, allUrgentTicketIds, 'Deleted')" class="ticket-menu"
+                            mat-icon-button>
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
                 </mat-card>
             </mat-tab>
             <mat-tab label="Middle Prio">
@@ -54,7 +56,7 @@
                         <mat-card-title>#{{allLowTickets[i]['ticketNumber']}}</mat-card-title>
                         <mat-card-subtitle>{{allLowTickets[i]['company']}}</mat-card-subtitle>
                     </mat-card-header>
-                    <mat-card-content>                       
+                    <mat-card-content>
                         <div class="bottom-left">
                             <p>Contact: {{allLowTickets[i]['contact']}}</p>
                             <p>{{allLowTickets[i]['ticketStatus']}}</p>

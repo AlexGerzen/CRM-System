@@ -145,4 +145,8 @@ export class OpenTicketsComponent implements OnInit {
   async addDocument() {
     await addDoc(collection(this.firestore, 'ticketHistory'), this.deletedTicket.toJson())
   }
+
+  reduceHeight() {
+    return this.allUrgentTickets.length * 16;
+  }
 }
