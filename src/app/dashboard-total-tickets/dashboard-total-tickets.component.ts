@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Firestore, collection, doc, onSnapshot, deleteDoc, getDoc, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-dashboard-total-tickets',

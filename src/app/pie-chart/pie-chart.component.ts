@@ -1,5 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import { ApexDataLabels, ApexFill, ApexLegend, ApexPlotOptions, ChartComponent } from "ng-apexcharts";
+import { Firestore, collection, doc, onSnapshot } from '@angular/fire/firestore';
 
 import {
   ApexNonAxisChartSeries,
@@ -28,26 +29,56 @@ export class PieChartComponent {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
+  private firestore: Firestore = inject(Firestore);
+  allTickets = [];
+  allLowTickets = [];
+  allMiddleTickets = [];
+  allUrgentTickets = [];
+  showChart: boolean = false;
+
   constructor() {
+    this.getOpenTickets();
+  }
+
+  async getOpenTickets() {
+    await onSnapshot(collection(this.firestore, 'tickets'), (ticket) => {
+      ticket.forEach(ticketData => {
+        this.allTickets.push(ticketData.data());
+      })
+      this.sortTicket();
+      this.generateChart();
+      this.showChart = true;
+    })
+  }
+
+  sortTicket() {
+    for (let i = 0; i < this.allTickets.length; i++) {
+      if (this.allTickets[i].urgency == 'Urgent') {
+        this.allUrgentTickets.push(this.allTickets[i]);
+      } else if (this.allTickets[i].urgency == 'Middle') {
+        this.allMiddleTickets.push(this.allTickets[i]);
+      } else if (this.allTickets[i].urgency == 'Low') {
+        this.allLowTickets.push(this.allTickets[i]);
+      }
+    }
+  }
+
+  generateChart() {
     this.chartOptions = {
-      series: [44, 55, 13],
+      series: [this.allUrgentTickets.length, this.allMiddleTickets.length, this.allLowTickets.length],
       // colors: ["pink", "yellow", "green"],
       dataLabels: {
         style: {
           colors: ["white", "white", "white"], // Hier die Farben der einzelnen Slices eintragen
         },
       },
-      // fill: {
-      //   colors: ['white', 'red', 'green'],
-      //   opacity: 1,
-      //   type: "solid"
-      // },
       chart: {
-        width: 380,
+        width: 400,
         type: "pie",
       },
       labels: ["High Prio", "Middle Prio", "Low Prio"],
       legend: {
+        position: "bottom",
         show: true,
         labels: {
           colors: ["white", "white", "white"]

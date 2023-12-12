@@ -1,9 +1,35 @@
 .dashboard-container {
     width: 100%;
+    height: 100%;
     display: flex;
+    flex-direction: column;
 }
 
 app-line-chart {
     width: 66%;
-    margin-left: 32px;
+    height: 100%;
+}
+
+app-pie-chart {
+    width: 66%;
+    height: 100%;
+}
+
+app-unassigned-tickets {
+    display: flex;
+    width: 100%;
+}
+
+.upper-container {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.lower-container {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    margin-top: 8px;
 }

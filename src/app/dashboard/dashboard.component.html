@@ -1,7 +1,16 @@
 <div class="dashboard-container">
-    <div class="width-33">
-        <app-pie-chart></app-pie-chart>
+    <div class="upper-container">
+        <div class="width-33">
+            
+        </div>
+
+        <app-line-chart class="margin-left-16px"></app-line-chart>
     </div>
-    
-    <app-line-chart></app-line-chart>
+    <div class="lower-container">
+        <app-pie-chart></app-pie-chart>
+        <div class="height-100 width-33 margin-left-16px">
+            <app-unassigned-tickets class="height-50"></app-unassigned-tickets>
+        </div>
+    </div>
+
 </div>

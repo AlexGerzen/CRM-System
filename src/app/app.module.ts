@@ -45,6 +45,7 @@ import { DashboardTotalTicketsComponent } from './dashboard-total-tickets/dashbo
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { UnassignedTicketsComponent } from './unassigned-tickets/unassigned-tickets.component';
 
 
 
@@ -70,7 +71,8 @@ import { PieChartComponent } from './pie-chart/pie-chart.component';
     ClockComponent,
     DashboardTotalTicketsComponent,
     LineChartComponent,
-    PieChartComponent
+    PieChartComponent,
+    UnassignedTicketsComponent
   ],
   imports: [
     BrowserModule,
