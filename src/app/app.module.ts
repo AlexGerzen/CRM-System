@@ -46,6 +46,8 @@ import { LineChartComponent } from './line-chart/line-chart.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { UnassignedTicketsComponent } from './unassigned-tickets/unassigned-tickets.component';
+import { NotepadComponent } from './notepad/notepad.component';
+import { DialogNotepadComponent } from './dialog-notepad/dialog-notepad.component';
 
 
 
@@ -72,7 +74,9 @@ import { UnassignedTicketsComponent } from './unassigned-tickets/unassigned-tick
     DashboardTotalTicketsComponent,
     LineChartComponent,
     PieChartComponent,
-    UnassignedTicketsComponent
+    UnassignedTicketsComponent,
+    NotepadComponent,
+    DialogNotepadComponent
   ],
   imports: [
     BrowserModule,
