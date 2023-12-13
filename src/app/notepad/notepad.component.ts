@@ -8,13 +8,22 @@ import { DialogNotepadComponent } from '../dialog-notepad/dialog-notepad.compone
   styleUrls: ['./notepad.component.scss']
 })
 export class NotepadComponent {
+  text: string = 'moin';
 
   constructor(public dialog: MatDialog) {
 
   }
 
   openDialog() {
-    this.dialog.open(DialogNotepadComponent)
+    let dialogRef = this.dialog.open(DialogNotepadComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Variable "text" vom Dialog erhalten:', result);
+      this.text = result;
+    });
   }
 
 }
+
+
+
