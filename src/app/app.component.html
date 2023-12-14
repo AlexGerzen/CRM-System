@@ -7,10 +7,8 @@
     <ul class="menu-items">
       <li (click)="highlightBackground('Dashboard')" [class.highlight-background]="linkStatus.linkDashboard"
         [routerLink]="['/']"><mat-icon>fact_check</mat-icon>Dashboard</li>
-      <li [routerLink]="['/user']"><mat-icon>perm_identity</mat-icon>User</li>
       <li (click)="highlightBackground('Employees')" [class.highlight-background]="linkStatus.linkEmployees"
         [routerLink]="['/employees']"><mat-icon>perm_identity</mat-icon>Employees</li>
-      <li [routerLink]="['/customers']"><mat-icon>apartment</mat-icon>Customers</li>
       <li (click)="highlightBackground('OpenTickets')" [class.highlight-background]="linkStatus.linkOpenTickets"
         [routerLink]="['/openTickets']"><mat-icon>support_agent</mat-icon>Tickets</li>
       <li (click)="highlightBackground('AddTickets')" [class.highlight-background]="linkStatus.linkAddTickets"

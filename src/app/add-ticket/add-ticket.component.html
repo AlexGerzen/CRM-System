@@ -9,7 +9,7 @@
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Enter the titel</mat-label>
-                    <input [disabled]="loading" matInput placeholder="Titel" formControlName="title">
+                    <input matInput placeholder="Titel" formControlName="title">
                     <mat-hint *ngIf="showTitleError">
                         {{ getErrorMessage("Titel") }}
                     </mat-hint>
@@ -19,7 +19,7 @@
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Description</mat-label>
-                    <textarea [disabled]="loading" formControlName="description" matInput></textarea>
+                    <textarea formControlName="description" matInput></textarea>
                     <mat-hint *ngIf="showDescriptionError">{{ getErrorMessage("Description") }}</mat-hint>
                 </mat-form-field>
             </div>
@@ -27,7 +27,7 @@
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Enter the company name</mat-label>
-                    <input [disabled]="loading" matInput placeholder="Company name" formControlName="company">
+                    <input matInput placeholder="Company name" formControlName="company">
                     <mat-hint *ngIf="showCompanyError">{{ getErrorMessage("Company name") }}</mat-hint>
                 </mat-form-field>
             </div>
@@ -35,7 +35,7 @@
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Enter the contact mail</mat-label>
-                    <input [disabled]="loading" matInput placeholder="example@example.com" formControlName="contact">
+                    <input matInput placeholder="example@example.com" formControlName="contact">
                     <mat-hint *ngIf="showContactError">{{ getErrorMessageEmail() }}</mat-hint>
                 </mat-form-field>
             </div>
@@ -43,7 +43,7 @@
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Due date</mat-label>
-                    <input formControlName="dueDate" [disabled]="loading" matInput [matDatepicker]="picker">
+                    <input formControlName="dueDate" matInput [matDatepicker]="picker">
                     <mat-hint class="color-white">MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
@@ -53,7 +53,7 @@
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Select the priority</mat-label>
-                    <mat-select [disabled]="loading" formControlName="urgency">
+                    <mat-select formControlName="urgency">
                         <mat-option value="Urgent">High Prio</mat-option>
                         <mat-option value="Middle">Middle Prio</mat-option>
                         <mat-option value="Low">Low Prio</mat-option>
@@ -65,7 +65,7 @@
             <div class="formfields-container padding-top-16">
                 <mat-form-field class="width-500px">
                     <mat-label>Select the employee</mat-label>
-                    <mat-select [disabled]="loading" formControlName="employee">
+                    <mat-select formControlName="employee">
                         <mat-option value="None">None</mat-option>
                         <mat-option *ngFor="let employee of allEmployees, index as i"
                             value="{{allEmployees[i]['firstName']}} {{allEmployees[i]['lastName']}}">{{allEmployees[i]['firstName']}}

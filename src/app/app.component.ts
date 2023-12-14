@@ -32,6 +32,5 @@ export class AppComponent {
     this.linkStatus.linkEmployees = false;
     this.linkStatus.linkFinishedTickets = false;
     this.linkStatus.linkOpenTickets = false;
-
   }
 }

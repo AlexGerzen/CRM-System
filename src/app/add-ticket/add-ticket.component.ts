@@ -30,13 +30,13 @@ export class AddTicketComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.ticketForm = this.fb.group({
-      title: ['', [Validators.required]],
-      contact: ['', [Validators.required, Validators.email]],
-      urgency: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      company: ['', [Validators.required]],
-      employee: ['', [Validators.required]],
-      dueDate: [],
+      title: [{ value: '', disabled: this.loading }, [Validators.required]],
+      contact: [{ value: '', disabled: this.loading }, [Validators.required, Validators.email]],
+      urgency: [{ value: '', disabled: this.loading }, [Validators.required]],
+      description: [{ value: '', disabled: this.loading }, [Validators.required]],
+      company: [{ value: '', disabled: this.loading }, [Validators.required]],
+      employee: [{ value: '', disabled: this.loading }, [Validators.required]],
+      dueDate: [{ value: '', disabled: this.loading }],
     });
   }
 
