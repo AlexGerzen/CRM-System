@@ -8,22 +8,35 @@ import { DialogNotepadComponent } from '../dialog-notepad/dialog-notepad.compone
   styleUrls: ['./notepad.component.scss']
 })
 export class NotepadComponent {
-  text: string = 'moin';
+  text: string = '';
 
   constructor(public dialog: MatDialog) {
-
+    this.getFromLocalStorage();
   }
 
   openDialog() {
-    let dialogRef = this.dialog.open(DialogNotepadComponent);
+    let dialogRef = this.dialog.open(DialogNotepadComponent, {
+      disableClose: true,
+      data: { 
+        text: this.text,
+       }
+    });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Variable "text" vom Dialog erhalten:', result);
       this.text = result;
     });
   }
 
+  getFromLocalStorage(): any | null {
+    try {
+      const serializedValue = localStorage.getItem('noteText');
+      if (serializedValue !== null) {
+        
+        this.text = JSON.parse(serializedValue)
+      }
+    } catch (error) {
+      console.error('Fehler beim Abrufen aus dem Local Storage:', error);
+    }
+  }
+
 }
-
-
-

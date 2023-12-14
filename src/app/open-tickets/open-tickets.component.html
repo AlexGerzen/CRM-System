@@ -1,8 +1,8 @@
 <mat-card class="height-100">
     <mat-card-content class="height-100">
-        <mat-tab-group class="height-100">
+        <mat-tab-group (click)="changeScrollbar()" class="height-100">
             <mat-tab label="High Prio">
-                <mat-card class="height-100" class="all-tickets">
+                <mat-card id="ticketContainer0" class="height-100" class="all-tickets">
                     <div  (click)="openDialog(allUrgentTicketIds[i])"
                     *ngFor="let tickets of allUrgentTickets, , index as i" class="ticket-container">
                         <mat-card-header>
@@ -27,7 +27,7 @@
                 </mat-card>
             </mat-tab>
             <mat-tab label="Middle Prio">
-                <mat-card (click)="openDialog(allMiddleTicketIds[i])"
+                <mat-card id="ticketContainer1" (click)="openDialog(allMiddleTicketIds[i])"
                     *ngFor="let tickets of allMiddleTickets, , index as i" class="ticket-container">
                     <mat-card-header>
                         <mat-card-title>#{{allMiddleTickets[i]['ticketNumber']}}</mat-card-title>
@@ -50,7 +50,7 @@
                 </mat-card>
             </mat-tab>
             <mat-tab label="Low Prio">
-                <mat-card (click)="openDialog(allLowTicketIds[i])" *ngFor="let tickets of allLowTickets, , index as i"
+                <mat-card id="ticketContainer2" (click)="openDialog(allLowTicketIds[i])" *ngFor="let tickets of allLowTickets, , index as i"
                     class="ticket-container">
                     <mat-card-header>
                         <mat-card-title>#{{allLowTickets[i]['ticketNumber']}}</mat-card-title>

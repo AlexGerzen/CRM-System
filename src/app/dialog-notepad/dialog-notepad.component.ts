@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-notepad',
@@ -7,10 +7,10 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./dialog-notepad.component.scss']
 })
 export class DialogNotepadComponent {
-  text: string = 'Hallo';
+  text: string = '';
 
-  constructor(public dialogRef: MatDialogRef<DialogNotepadComponent>) {
-
+  constructor(public dialogRef: MatDialogRef<DialogNotepadComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.text = this.data.text
   }
 
   ngAfterViewInit() {
@@ -18,6 +18,7 @@ export class DialogNotepadComponent {
   }
 
   closeDialog(): void {
+    this.saveToLocalStorage(this.text)
     this.dialogRef.close(this.text);
   }
 
@@ -37,5 +38,14 @@ export class DialogNotepadComponent {
       element3.style.height = '100%';
     }
   }
+
+  saveToLocalStorage(value: any): void {
+  try {
+    const serializedValue = JSON.stringify(value);
+    localStorage.setItem('noteText', serializedValue);
+  } catch (error) {
+    console.error('Fehler beim Speichern im Local Storage:', error);
+  }
+}
 
 }

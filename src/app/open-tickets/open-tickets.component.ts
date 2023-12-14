@@ -31,7 +31,6 @@ export class OpenTicketsComponent implements OnInit {
   private firestore: Firestore = inject(Firestore);
 
   constructor(public dialog: MatDialog) {
-
   }
 
 
@@ -48,7 +47,8 @@ export class OpenTicketsComponent implements OnInit {
       this.transformDates(this.allUrgentDates, this.allUrgentTickets);
       this.transformDates(this.allMiddleDates, this.allMiddleTickets);
       this.transformDates(this.allLowDates, this.allLowTickets);
-    })
+      this.changeScrollbar();
+    });
   }
 
   clearAllTickets() {
@@ -148,5 +148,23 @@ export class OpenTicketsComponent implements OnInit {
 
   reduceHeight() {
     return this.allUrgentTickets.length * 16;
+  }
+
+  changeScrollbar() {
+    for (let i = 0; i < 3; i++) {
+      let id = "ticketContainer" + i.toString();
+
+      let element = document.getElementById(id);
+      
+
+      if (element) {
+        var parentElement = element.parentElement;
+        console.log(id);
+
+        if (parentElement) {
+          parentElement.classList.add('custom-scrollbar');
+        }
+      }
+    }
   }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Firestore, collection, addDoc, onSnapshot } from '@angular/fire/firestore';
 import { Ticket } from 'src/models/ticket.class';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-ticket',
@@ -27,7 +28,7 @@ export class AddTicketComponent implements OnInit {
 
   private firestore: Firestore = inject(Firestore);
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.ticketForm = this.fb.group({
       title: ['', [Validators.required]],
       contact: ['', [Validators.required, Validators.email]],
@@ -52,8 +53,13 @@ export class AddTicketComponent implements OnInit {
       this.addDocument().then(() => {
         this.clearFields();
         this.loading = false;
+        this.redirectToOpenTickets();
       });
     }
+  }
+
+  redirectToOpenTickets() {
+    this.router.navigate(['/openTickets']);
   }
 
   setTicket() {
