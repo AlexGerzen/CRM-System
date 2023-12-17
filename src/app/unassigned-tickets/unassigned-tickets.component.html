@@ -2,7 +2,7 @@
 
     <mat-card-content>
         <mat-card-title>Unassigned Tickets:</mat-card-title>
-        <div class="number-container">
+        <div (click)="linkToOpenTickets()" class="number-container">
             <div *ngIf="showCounter" class="number">
                 {{unassignedCounter}}
             </div>

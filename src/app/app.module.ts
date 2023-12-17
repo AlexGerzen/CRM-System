@@ -40,6 +40,7 @@ import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { UnassignedTicketsComponent } from './unassigned-tickets/unassigned-tickets.component';
 import { NotepadComponent } from './notepad/notepad.component';
 import { DialogNotepadComponent } from './dialog-notepad/dialog-notepad.component';
+import { RankingComponent } from './ranking/ranking.component';
 
 
 
@@ -60,7 +61,8 @@ import { DialogNotepadComponent } from './dialog-notepad/dialog-notepad.componen
     PieChartComponent,
     UnassignedTicketsComponent,
     NotepadComponent,
-    DialogNotepadComponent
+    DialogNotepadComponent,
+    RankingComponent
   ],
   imports: [
     BrowserModule,
