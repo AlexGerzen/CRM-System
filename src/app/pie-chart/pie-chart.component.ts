@@ -1,6 +1,6 @@
 import { Component, ViewChild, inject } from '@angular/core';
 import { ApexDataLabels, ApexFill, ApexLegend, ApexPlotOptions, ChartComponent } from "ng-apexcharts";
-import { Firestore, collection, doc, onSnapshot } from '@angular/fire/firestore';
+import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
 
 import {
   ApexNonAxisChartSeries,

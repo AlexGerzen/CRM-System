@@ -41,6 +41,8 @@ import { UnassignedTicketsComponent } from './unassigned-tickets/unassigned-tick
 import { NotepadComponent } from './notepad/notepad.component';
 import { DialogNotepadComponent } from './dialog-notepad/dialog-notepad.component';
 import { RankingComponent } from './ranking/ranking.component';
+import {MatTableModule} from '@angular/material/table';
+
 
 
 
@@ -66,6 +68,7 @@ import { RankingComponent } from './ranking/ranking.component';
   ],
   imports: [
     BrowserModule,
+    MatTableModule,
     CommonModule,
     DatePipe,
     MatSelectModule,

@@ -45,4 +45,9 @@ app-notepad {
     width: 100%;
     display: flex;
     margin-top: 8px;
+
+    div {
+        display: flex;
+        flex-direction: column;
+    }
 }
