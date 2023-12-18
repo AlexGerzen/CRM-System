@@ -5,15 +5,15 @@
     </div>
 
     <ul class="menu-items">
-      <li (click)="highlightBackground('Dashboard')" [class.highlight-background]="linkStatus.linkDashboard"
+      <li [class.highlight-background]="linkStatus.dashboard"
         [routerLink]="['/']"><mat-icon>fact_check</mat-icon>Dashboard</li>
-      <li (click)="highlightBackground('Employees')" [class.highlight-background]="linkStatus.linkEmployees"
+      <li [class.highlight-background]="linkStatus.employees"
         [routerLink]="['/employees']"><mat-icon>perm_identity</mat-icon>Employees</li>
-      <li (click)="highlightBackground('OpenTickets')" [class.highlight-background]="linkStatus.linkOpenTickets"
+      <li [class.highlight-background]="linkStatus.openTickets"
         [routerLink]="['/openTickets']"><mat-icon>support_agent</mat-icon>Tickets</li>
-      <li (click)="highlightBackground('AddTickets')" [class.highlight-background]="linkStatus.linkAddTickets"
+      <li [class.highlight-background]="linkStatus.addTicket"
         [routerLink]="['/addTicket']"><mat-icon>confirmation_number</mat-icon>Add Ticket</li>
-      <li (click)="highlightBackground('FinishedTickets')" [class.highlight-background]="linkStatus.linkFinishedTickets"
+      <li [class.highlight-background]="linkStatus.finishedTickets"
         [routerLink]="['/finishedTickets']"><mat-icon>history</mat-icon>Ticket History</li>
     </ul>
   </mat-drawer>

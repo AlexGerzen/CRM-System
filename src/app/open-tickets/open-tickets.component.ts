@@ -159,7 +159,6 @@ export class OpenTicketsComponent implements OnInit {
 
       if (element) {
         var parentElement = element.parentElement;
-        console.log(id);
 
         if (parentElement) {
           parentElement.classList.add('custom-scrollbar');

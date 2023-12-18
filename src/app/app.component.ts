@@ -1,36 +1,66 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'crm-system';
   linkStatus = {
-    linkFinishedTickets: false,
-    linkAddTickets: false,
-    linkOpenTickets: false,
-    linkEmployees: false,
-    linkDashboard: true
+    finishedTickets: false,
+    addTicket: false,
+    openTickets: false,
+    employees: false,
+    dashboard: false,
+  };
+  staticPath;
+
+
+  constructor(private location: Location) {
+
+  }
+
+  ngOnInit(): void {
+    // Initialen Wert für staticPath setzen
+    this.updateStaticPath();
+
+    // Die URL-Änderungen überwachen und staticPath aktualisieren
+    this.location.onUrlChange(() => {
+      this.updateStaticPath();
+    });
   };
 
-  highlightBackground(link) {
+  updateStaticPath(): void {
+    this.staticPath = this.getLastSegmentOfUrl();
+    
+    if(this.staticPath == '') {
+      this.staticPath = 'dashboard'
+    }
+    
+    this.highlightBackground();
+  }
+
+  getLastSegmentOfUrl(): string {
+    const path = this.location.path();
+    const segments = path.split('/');
+    return segments.length > 0 ? segments[segments.length - 1] : '';
+  }
+
+
+  highlightBackground() {
     this.clearAllBackgrounds();
 
-    let part1 = 'link';
-    let part2 = link;
-
-    let linkName = part1 + part2;
-
-    this.linkStatus[linkName] = true;
+    this.linkStatus[this.staticPath] = true;
   }
 
   clearAllBackgrounds() {
-    this.linkStatus.linkAddTickets = false;
-    this.linkStatus.linkDashboard = false;
-    this.linkStatus.linkEmployees = false;
-    this.linkStatus.linkFinishedTickets = false;
-    this.linkStatus.linkOpenTickets = false;
+    this.linkStatus.addTicket = false;
+    this.linkStatus.dashboard = false;
+    this.linkStatus.employees = false;
+    this.linkStatus.finishedTickets = false;
+    this.linkStatus.openTickets = false;
   }
 }
