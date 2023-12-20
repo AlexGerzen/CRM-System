@@ -1,10 +1,14 @@
 <mat-card class="height-100">
-    <mat-card-content class="height-100">
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput placeholder="Filter" #input>
+    </mat-form-field>
+    <mat-card-content class="card-content-height ">
         <mat-tab-group (click)="changeScrollbar()" class="height-100">
             <mat-tab label="High Prio">
                 <mat-card id="ticketContainer0" class="height-100" class="all-tickets">
-                    <div  (click)="openDialog(allUrgentTicketIds[i])"
-                    *ngFor="let tickets of allUrgentTickets, , index as i" class="ticket-container">
+                    <div (click)="openDialog(allUrgentTicketIds[i])"
+                        *ngFor="let tickets of allUrgentTickets, , index as i" class="ticket-container">
                         <mat-card-header>
                             <mat-card-title>#{{allUrgentTickets[i]['ticketNumber']}}</mat-card-title>
                             <mat-card-subtitle>{{allUrgentTickets[i]['company']}}</mat-card-subtitle>
@@ -50,8 +54,8 @@
                 </mat-card>
             </mat-tab>
             <mat-tab label="Low Prio">
-                <mat-card id="ticketContainer2" (click)="openDialog(allLowTicketIds[i])" *ngFor="let tickets of allLowTickets, , index as i"
-                    class="ticket-container">
+                <mat-card id="ticketContainer2" (click)="openDialog(allLowTicketIds[i])"
+                    *ngFor="let tickets of allLowTickets, , index as i" class="ticket-container">
                     <mat-card-header>
                         <mat-card-title>#{{allLowTickets[i]['ticketNumber']}}</mat-card-title>
                         <mat-card-subtitle>{{allLowTickets[i]['company']}}</mat-card-subtitle>

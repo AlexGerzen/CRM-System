@@ -13,7 +13,7 @@
         position: relative;
         padding-top: 16px;
         padding-bottom: 16px;
-
+        
         p {
             margin: 0;
             font-size: 16px;
@@ -33,6 +33,11 @@
         font-size: 32px;
         text-align: center;
     }
+}
+
+.card-content-height {
+    height: calc(100% - 80px);
+    max-height: calc(100% - 80px);
 }
 
 .late-by {
