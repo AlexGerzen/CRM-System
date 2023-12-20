@@ -13,6 +13,9 @@ export class OpenTicketsComponent implements OnInit {
   allTickets = [];
   allTicketIds = [];
 
+  filteredTickets = [];
+  search: string = '';
+
   allUrgentTickets = [];
   allUrgentTicketIds = [];
   allUrgentDates = [];
@@ -38,22 +41,46 @@ export class OpenTicketsComponent implements OnInit {
     onSnapshot(collection(this.firestore, 'tickets'), (ticket) => {
       this.clearAllTickets();
       this.clearAllDates();
+      this.allTickets = [];
+      this.allTicketIds = [];
       ticket.forEach(ticketData => {
         this.allTickets.push(ticketData.data());
         this.allTicketIds.push(ticketData.id);
 
       })
-      this.sortTicket();
-      this.transformDates(this.allUrgentDates, this.allUrgentTickets);
-      this.transformDates(this.allMiddleDates, this.allMiddleTickets);
-      this.transformDates(this.allLowDates, this.allLowTickets);
+      this.filter();
       this.changeScrollbar();
     });
   }
 
+  filter() {
+    this.filteredTickets = [];
+    this.clearAllTickets();
+    this.filteredTickets = this.filterArray(this.allTickets, this.search);
+
+    this.sortTicket();
+    this.transformDates(this.allUrgentDates, this.allUrgentTickets);
+    this.transformDates(this.allMiddleDates, this.allMiddleTickets);
+    this.transformDates(this.allLowDates, this.allLowTickets);
+  }
+
+  private filterArray(arr: any[], suchbegriff: string): any[] {
+    return arr.filter(item => {
+      for (const key in item) {
+        if (typeof item[key] === 'string' && item[key].toLowerCase().includes(suchbegriff)) {
+          return true;
+        }
+        if (typeof item[key] === 'object') {
+          if (this.filterArray([item[key]], suchbegriff).length > 0) {
+            return true;
+          }
+        }
+      }
+      return false;
+    });
+  }
+
   clearAllTickets() {
-    this.allTickets = [];
-    this.allTicketIds = [];
     this.allUrgentTickets = [];
     this.allUrgentTicketIds = [];
     this.allMiddleTickets = [];
@@ -83,7 +110,7 @@ export class OpenTicketsComponent implements OnInit {
   }
 
   sortTicket() {
-    for (let i = 0; i < this.allTickets.length; i++) {
+    for (let i = 0; i < this.filteredTickets.length; i++) {
       if (this.allTickets[i].urgency == 'Urgent') {
         this.allUrgentTickets.push(this.allTickets[i]);
         this.allUrgentTicketIds.push(this.allTicketIds[i]);
@@ -155,7 +182,7 @@ export class OpenTicketsComponent implements OnInit {
       let id = "ticketContainer" + i.toString();
 
       let element = document.getElementById(id);
-      
+
 
       if (element) {
         var parentElement = element.parentElement;

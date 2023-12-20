@@ -1,7 +1,7 @@
 <mat-card class="height-100">
     <mat-form-field>
         <mat-label>Filter</mat-label>
-        <input matInput placeholder="Filter" #input>
+        <input [(ngModel)]="search" (input)="filter()" matInput placeholder="Filter" #input>
     </mat-form-field>
     <mat-card-content class="card-content-height ">
         <mat-tab-group (click)="changeScrollbar()" class="height-100">
