@@ -1,10 +1,13 @@
 <mat-card class="height-100">
+
     <mat-form-field>
         <mat-label>Filter</mat-label>
         <input [(ngModel)]="search" (input)="filter()" matInput placeholder="Filter" #input>
     </mat-form-field>
+
     <mat-card-content class="card-content-height ">
         <mat-tab-group (click)="changeScrollbar()" class="height-100">
+
             <mat-tab label="High Prio">
                 <mat-card id="ticketContainer0" class="height-100" class="all-tickets">
                     <div (click)="openDialog(allUrgentTicketIds[i])"
@@ -30,6 +33,7 @@
                     </div>
                 </mat-card>
             </mat-tab>
+
             <mat-tab label="Middle Prio">
                 <mat-card id="ticketContainer1" (click)="openDialog(allMiddleTicketIds[i])"
                     *ngFor="let tickets of allMiddleTickets, , index as i" class="ticket-container">
@@ -53,6 +57,7 @@
                     </button>
                 </mat-card>
             </mat-tab>
+
             <mat-tab label="Low Prio">
                 <mat-card id="ticketContainer2" (click)="openDialog(allLowTicketIds[i])"
                     *ngFor="let tickets of allLowTickets, , index as i" class="ticket-container">
@@ -75,6 +80,7 @@
                     </button>
                 </mat-card>
             </mat-tab>
+            
         </mat-tab-group>
     </mat-card-content>
 </mat-card>

@@ -21,15 +21,25 @@ export class EmployeesComponent {
   }
 
   ngOnInit(): void {
+    this.getEmployees();
+  }
+
+  /**
+   * This function will get the employees from the database
+   */
+  getEmployees() {
     onSnapshot(collection(this.firestore, 'employees'), (employee) => {
       this.allEmployees = [];
-      employee.forEach( employeeData => {
+      employee.forEach(employeeData => {
         this.allEmployees.push(employeeData.data())
         this.allEmployeeIds.push(employeeData.id)
       })
     })
   }
 
+  /**
+   * This function will open the dialog
+   */
   openDialog() {
     this.dialog.open(DialogAddEmployeeComponent)
   }

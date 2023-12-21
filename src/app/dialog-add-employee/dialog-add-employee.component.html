@@ -3,6 +3,7 @@
 
     <h1 mat-dialog-title>Add Employee</h1>
     <div mat-dialog-content>
+        
         <div class="padding-top-16">
             <mat-form-field class="margin-right-16" appearance="outline">
                 <mat-label>Firstname</mat-label>
@@ -41,6 +42,7 @@
         </div>
 
     </div>
+
     <div mat-dialog-actions class="button-container">
         <button [disabled]="loading" (click)="safeEmployee()" color="primary" mat-raised-button>Safe</button>
         <button [disabled]="loading" (click)="dialogRef.close()" mat-raised-button>Cancel</button>  

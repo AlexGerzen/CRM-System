@@ -38,6 +38,13 @@ export class OpenTicketsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getTickets();
+  }
+
+  /**
+   * This function will get the tickets from the database
+   */
+  getTickets() {
     onSnapshot(collection(this.firestore, 'tickets'), (ticket) => {
       this.clearAllTickets();
       this.clearAllDates();
@@ -53,6 +60,9 @@ export class OpenTicketsComponent implements OnInit {
     });
   }
 
+  /**
+   * This function will call all the functions to filter the ticket after the search input
+   */
   filter() {
     this.filteredTickets = [];
     this.clearAllTickets();
@@ -64,14 +74,21 @@ export class OpenTicketsComponent implements OnInit {
     this.transformDates(this.allLowDates, this.allLowTickets);
   }
 
-  private filterArray(arr: any[], suchbegriff: string): any[] {
+  /**
+   * This function will filter the tickets after the search term
+   * 
+   * @param arr This is the array to filter
+   * @param suchbegriff This is the search term
+   * @returns It returns "true" while it is filtering and "false" when it is done filtering
+   */
+  private filterArray(arr: any[], searchTerm: string): any[] {
     return arr.filter(item => {
       for (const key in item) {
-        if (typeof item[key] === 'string' && item[key].toLowerCase().includes(suchbegriff)) {
+        if (typeof item[key] === 'string' && item[key].toLowerCase().includes(searchTerm)) {
           return true;
         }
         if (typeof item[key] === 'object') {
-          if (this.filterArray([item[key]], suchbegriff).length > 0) {
+          if (this.filterArray([item[key]], searchTerm).length > 0) {
             return true;
           }
         }
@@ -80,6 +97,9 @@ export class OpenTicketsComponent implements OnInit {
     });
   }
 
+  /**
+   * This function will clear all the ticket arrays
+   */
   clearAllTickets() {
     this.allUrgentTickets = [];
     this.allUrgentTicketIds = [];
@@ -89,12 +109,21 @@ export class OpenTicketsComponent implements OnInit {
     this.allLowTicketIds = [];
   }
 
+  /**
+   * This function will clear all the date arrays
+   */
   clearAllDates() {
     this.allLowDates = [];
     this.allMiddleDates = [];
     this.allUrgentDates = [];
   }
 
+  /**
+   * This function will transform all the dates
+   * 
+   * @param datesArray This is the array of dates which will be transformed
+   * @param ticketArray This is the matching ticket array for the datearray
+   */
   transformDates(datesArray, ticketArray) {
     for (let i = 0; i < ticketArray.length; i++) {
       let date = new Date(ticketArray[i].dueDate);
@@ -109,6 +138,9 @@ export class OpenTicketsComponent implements OnInit {
     }
   }
 
+  /**
+   * This function will sort the tickets to "urgent" "middle" and "low" priority
+   */
   sortTicket() {
     for (let i = 0; i < this.filteredTickets.length; i++) {
       if (this.allTickets[i].urgency == 'Urgent') {
@@ -124,6 +156,14 @@ export class OpenTicketsComponent implements OnInit {
     }
   }
 
+  /**
+   * This function will call all the functions to delete a ticket
+   * 
+   * @param event This is to prevent the parent click event
+   * @param index This is the index of the ticket that will be deleted
+   * @param urgencyIdArray This is the id array with the matching urgency
+   * @param deleteInfo This is the delete status
+   */
   async deleteTicket(event: Event, index: number, urgencyIdArray: string[], deleteInfo: 'Deleted' | 'Finished') {
     event.stopPropagation();
 
@@ -132,6 +172,11 @@ export class OpenTicketsComponent implements OnInit {
     this.deleteDocument(docId);
   }
 
+  /**
+   * This function will open the dialog with the ticket info
+   * 
+   * @param docId This is the id of the ticket that will be opened
+   */
   openDialog(docId) {
     this.dialog.open(DialogTicketInfoComponent, {
       data: {
@@ -141,6 +186,11 @@ export class OpenTicketsComponent implements OnInit {
     });
   }
 
+  /**
+   * This function will delete the ticket from the database
+   * 
+   * @param docId This is the id of the ticket that will be deleted
+   */
   deleteDocument(docId) {
     deleteDoc(doc(collection(this.firestore, 'tickets'), docId))
       .then(() => { })
@@ -149,12 +199,23 @@ export class OpenTicketsComponent implements OnInit {
       });
   }
 
+  /**
+   * This function will add the deleted ticket to the ticket history database
+   * 
+   * @param docId This is the id of the deleted ticket
+   * @param deleteInfo This is the delete status
+   */
   async addToHistory(docId, deleteInfo) {
     await this.getDocument(docId)
     this.deletedTicket.ticketStatus = deleteInfo;
     this.addDocument();
   }
 
+  /**
+   * This function get the ticket from the database before it will be deleted
+   * 
+   * @param docId This is the id of the ticket that will be deleted
+   */
   async getDocument(docId) {
     await getDoc(doc(collection(this.firestore, 'tickets'), docId))
       .then((docSnapshot) => {
@@ -169,14 +230,16 @@ export class OpenTicketsComponent implements OnInit {
       });
   }
 
+  /**
+   * This function will add a ticket to the finished tickets database
+   */
   async addDocument() {
     await addDoc(collection(this.firestore, 'ticketHistory'), this.deletedTicket.toJson())
   }
 
-  reduceHeight() {
-    return this.allUrgentTickets.length * 16;
-  }
-
+  /**
+   * This function will change the design of the scrollbar
+   */
   changeScrollbar() {
     for (let i = 0; i < 3; i++) {
       let id = "ticketContainer" + i.toString();

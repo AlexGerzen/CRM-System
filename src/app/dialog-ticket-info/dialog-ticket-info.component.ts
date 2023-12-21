@@ -2,7 +2,6 @@ import { Component, Inject, inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Firestore, collection, doc, getDoc, setDoc, addDoc, deleteDoc, onSnapshot } from '@angular/fire/firestore';
 import { Ticket } from 'src/models/ticket.class';
-import { OpenTicketsComponent } from '../open-tickets/open-tickets.component';
 
 @Component({
   selector: 'app-dialog-ticket-info',
@@ -27,6 +26,11 @@ export class DialogTicketInfoComponent implements OnInit {
     this.getEmployees();
   }
 
+  /**
+   * This function will get all the data of the ticket from the database
+   * 
+   * @param id This is the id of the ticket in the database
+   */
   async getDocument(id) {
     await getDoc(doc(collection(this.firestore, id), this.data.id))
       .then((docSnapshot) => {
@@ -41,15 +45,24 @@ export class DialogTicketInfoComponent implements OnInit {
       });
   }
 
+  /**
+   * This funtion will get the employees from the database
+   */
   getEmployees() {
     onSnapshot(collection(this.firestore, 'employees'), (employees) => {
       this.allEmployees = [];
-      employees.forEach( employee => {
+      employees.forEach(employee => {
         this.allEmployees.push(employee.data())
       })
     })
   }
 
+  /**
+   * This function is used to transform the date to the correct format
+   * 
+   * @param rawDate This is the date but in the wrong format
+   * @returns It returns the date in the correct format
+   */
   transformDate(rawDate) {
     let date = new Date(rawDate);
 
@@ -62,6 +75,9 @@ export class DialogTicketInfoComponent implements OnInit {
     return transformedDate
   }
 
+  /**
+   * This function will turn the edit mode on and off
+   */
   switchEditMode() {
     if (this.edit) {
       this.edit = false;
@@ -72,31 +88,45 @@ export class DialogTicketInfoComponent implements OnInit {
     }
   }
 
+  /**
+   * This function is used to transform the date to the correct format
+   * 
+   * @param rawDate This is the date but in the wrong format
+   * @returns It returns the date in the correct format
+   */
   transformDateForCopy(rawDate) {
     return new Date(rawDate);
   }
 
+  /**
+   * This function will update the ticket in the database
+   */
   async updateTicket() {
     this.ticketInfoCopy.dueDate = this.ticketInfoCopyDate.getTime();
     await (setDoc(doc(collection(this.firestore, 'tickets'), this.data.id), this.ticketInfoCopy.toJson()));
     this.dialogRef.close();
   }
 
+  /**
+   * This function will call all the functions to delete the ticket and add it to the finished tickets
+   */
   async deleteTicket() {
     await this.addToHistory();
     this.deleteDocument();
     this.dialogRef.close();
   }
 
+  /**
+   * This function will add the finished ticket to the database
+   */
   async addToHistory() {
     this.ticketInfo.ticketStatus = 'Finished';
-    await this.addDocument();
-  }
-
-  async addDocument() {
     await addDoc(collection(this.firestore, 'ticketHistory'), this.ticketInfo.toJson())
   }
 
+  /**
+   * This function will delete the ticket from the database
+   */
   deleteDocument() {
     deleteDoc(doc(collection(this.firestore, 'tickets'), this.data.id))
       .then(() => { })

@@ -9,6 +9,13 @@ export class ClockComponent implements OnInit {
   currentTime: Date = new Date();
 
   ngOnInit(): void {
+    this.setClock();
+  }
+
+  /**
+   * This function sets up the clock
+   */
+  setClock() {
     setInterval(() => {
       this.currentTime = new Date();
     }, 1000);

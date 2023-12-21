@@ -13,7 +13,7 @@
         position: relative;
         padding-top: 16px;
         padding-bottom: 16px;
-        
+
         p {
             margin: 0;
             font-size: 16px;
@@ -78,15 +78,18 @@
 }
 
 ::ng-deep .mat-mdc-tab-body-content.custom-scrollbar::-webkit-scrollbar {
-    width: 12px; /* Ändere die Breite nach Bedarf */
-  }
-  
-  ::ng-deep .mat-mdc-tab-body-content.custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #a0a0a0; /* Ändere die Farbe nach Bedarf */
-    border-radius: 10px; /* Ändere die Grenzradius nach Bedarf */
-  }
-  
-  ::ng-deep .mat-mdc-tab-body-content.custom-scrollbar::-webkit-scrollbar-track {
+    width: 12px;
+    /* Ändere die Breite nach Bedarf */
+}
+
+::ng-deep .mat-mdc-tab-body-content.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #a0a0a0;
+    /* Ändere die Farbe nach Bedarf */
+    border-radius: 10px;
+    /* Ändere die Grenzradius nach Bedarf */
+}
+
+::ng-deep .mat-mdc-tab-body-content.custom-scrollbar::-webkit-scrollbar-track {
     background-color: #f0f0f0;
     border-radius: 10px;
-  }
+}

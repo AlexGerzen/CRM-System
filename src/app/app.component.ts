@@ -24,25 +24,37 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Initialen Wert für staticPath setzen
     this.updateStaticPath();
+    this.checkUrlChange();
+  };
 
-    // Die URL-Änderungen überwachen und staticPath aktualisieren
+  /**
+   * This function will check if the url is changed
+   */
+  checkUrlChange() {
     this.location.onUrlChange(() => {
       this.updateStaticPath();
     });
-  };
+  }
 
+  /**
+   * This function will update the static path when the url is changed
+   */
   updateStaticPath(): void {
     this.staticPath = this.getLastSegmentOfUrl();
-    
-    if(this.staticPath == '') {
+
+    if (this.staticPath == '') {
       this.staticPath = 'dashboard'
     }
-    
+
     this.highlightBackground();
   }
 
+  /**
+   * This function will get the last segment of the url
+   * 
+   * @returns It returns the last segment of the url
+   */
   getLastSegmentOfUrl(): string {
     const path = this.location.path();
     const segments = path.split('/');
@@ -50,12 +62,18 @@ export class AppComponent implements OnInit {
   }
 
 
+  /**
+   * This function will highlight the background
+   */
   highlightBackground() {
     this.clearAllBackgrounds();
 
     this.linkStatus[this.staticPath] = true;
   }
 
+  /**
+   * This function will clear all the backgorunds
+   */
   clearAllBackgrounds() {
     this.linkStatus.addTicket = false;
     this.linkStatus.dashboard = false;

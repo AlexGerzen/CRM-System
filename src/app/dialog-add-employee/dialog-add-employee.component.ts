@@ -11,13 +11,15 @@ import { Employee } from 'src/models/employee.class';
 export class DialogAddEmployeeComponent {
   loading: boolean = false;
   employee: Employee = new Employee();
-
   private firestore: Firestore = inject(Firestore);
-  
+
   constructor(public dialogRef: MatDialogRef<DialogAddEmployeeComponent>) {
 
-   }
+  }
 
+  /**
+   * This function calls all the functions to safe the employee
+   */
   async safeEmployee() {
     this.loading = true;
     await this.addDocument();
@@ -25,6 +27,9 @@ export class DialogAddEmployeeComponent {
     this.dialogRef.close();
   }
 
+  /**
+   * This function will safe the employee in the database
+   */
   async addDocument() {
     await addDoc(collection(this.firestore, 'employees'), this.employee.toJson())
   }

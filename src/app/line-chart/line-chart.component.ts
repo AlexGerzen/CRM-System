@@ -1,5 +1,5 @@
 import { Component, ViewChild, inject } from "@angular/core";
-import { Firestore, collection, doc, onSnapshot } from '@angular/fire/firestore';
+import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
 
 import {
   ChartComponent,
@@ -34,10 +34,12 @@ export type ChartOptions = {
 export class LineChartComponent {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
-
   private firestore: Firestore = inject(Firestore);
-
   showChart: boolean = false;
+  ticketsDone: boolean = false;
+  finishedTicketsDone: boolean = false;
+  allTickets = [];
+  allFinishedTickets = []
 
   ticketsJan: number;
   ticketsFeb: number;
@@ -51,11 +53,6 @@ export class LineChartComponent {
   ticketsOct: number;
   ticketsNov: number;
   ticketsDez: number;
-  allTickets = [];
-  allFinishedTickets = []
-
-  ticketsDone:boolean = false;
-  finishedTicketsDone:boolean = false;
 
   constructor() {
 
@@ -65,19 +62,24 @@ export class LineChartComponent {
     this.getTickets();
   }
 
+  /**
+   * This function will call all the functions to get the tickets from the database
+   */
   async getTickets() {
     this.clearAllMonths();
     await this.getOpenTickets();
     this.getFinishedTickets();
-    
   }
 
+  /**
+   * This function will get the open tickets from the database
+   */
   async getOpenTickets() {
     await onSnapshot(collection(this.firestore, 'tickets'), (ticket) => {
       ticket.forEach(ticketData => {
         this.allTickets.push(ticketData.data());
       })
-      this.sortTicket(this.allTickets);
+      this.getMonth(this.allTickets);
       this.ticketsDone = true;
       if (this.ticketsDone && this.finishedTicketsDone) {
         this.generateChart();
@@ -86,12 +88,15 @@ export class LineChartComponent {
     })
   }
 
+  /**
+   * This function will get the finished tickets from the database
+   */
   getFinishedTickets() {
     onSnapshot(collection(this.firestore, 'ticketHistory'), (ticket) => {
       ticket.forEach(ticketData => {
         this.allFinishedTickets.push(ticketData.data());
       })
-      this.sortTicket(this.allFinishedTickets);
+      this.getMonth(this.allFinishedTickets);
       this.finishedTicketsDone = true;
       if (this.ticketsDone && this.finishedTicketsDone) {
         this.generateChart();
@@ -100,7 +105,11 @@ export class LineChartComponent {
     })
   }
 
-  sortTicket(ticket) { 
+  /**
+   * This function will get the month from each ticket
+   * @param ticket This is the array with all the tickets in it
+   */
+  getMonth(ticket) {
     for (let i = 0; i < ticket.length; i++) {
       let timeStamp = ticket[i].date;
 
@@ -111,6 +120,11 @@ export class LineChartComponent {
     }
   }
 
+  /**
+   * This function will count the months from the ticket
+   * 
+   * @param month This is the current month 
+   */
   addToMonth(month) {
     if (month === 1) {
       this.ticketsJan++
@@ -139,6 +153,9 @@ export class LineChartComponent {
     }
   }
 
+  /**
+   * This function will clear all the month counters
+   */
   clearAllMonths() {
     this.ticketsJan = 0;
     this.ticketsFeb = 0;
@@ -154,6 +171,9 @@ export class LineChartComponent {
     this.ticketsDez = 0;
   }
 
+  /**
+   * This function will generate the chart
+   */
   generateChart() {
     this.ticketsDone = false;
     this.finishedTicketsDone = false;
@@ -181,7 +201,7 @@ export class LineChartComponent {
         },
         y: {
           formatter: function (val) {
-            return val + " Einheiten"; 
+            return val + " Einheiten";
           }
         }
       },

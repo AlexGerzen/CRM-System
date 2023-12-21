@@ -40,6 +40,9 @@ export class PieChartComponent {
     this.getOpenTickets();
   }
 
+  /**
+   * This function will get all the tickets from the database
+   */
   async getOpenTickets() {
     await onSnapshot(collection(this.firestore, 'tickets'), (ticket) => {
       ticket.forEach(ticketData => {
@@ -51,6 +54,9 @@ export class PieChartComponent {
     })
   }
 
+  /**
+   * This function will sort all the tickets depending on the urgency
+   */
   sortTicket() {
     for (let i = 0; i < this.allTickets.length; i++) {
       if (this.allTickets[i].urgency == 'Urgent') {
@@ -63,6 +69,9 @@ export class PieChartComponent {
     }
   }
 
+  /**
+   * This function will generate the chart
+   */
   generateChart() {
     this.chartOptions = {
       series: [this.allUrgentTickets.length, this.allMiddleTickets.length, this.allLowTickets.length],

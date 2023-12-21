@@ -12,14 +12,12 @@ import { Router } from '@angular/router';
 })
 export class AddTicketComponent implements OnInit {
   ticketForm: FormGroup;
-
   showTitleError: boolean = false;
   showContactError: boolean = false;
   showCompanyError: boolean = false;
   showDescriptionError: boolean = false;
   showUrgencyError: boolean = false;
   showEmployeeError: boolean = false;
-
   ticket = new Ticket();
   loading: boolean = false;
   dueDate: Date;
@@ -29,6 +27,17 @@ export class AddTicketComponent implements OnInit {
   private firestore: Firestore = inject(Firestore);
 
   constructor(private fb: FormBuilder, private router: Router) {
+    this.setTicketForm();
+  }
+
+  ngOnInit() {
+    this.getEmployees();
+  }
+
+  /**
+   * This function is used to set the form for the validation
+   */
+  setTicketForm() {
     this.ticketForm = this.fb.group({
       title: [{ value: '', disabled: this.loading }, [Validators.required]],
       contact: [{ value: '', disabled: this.loading }, [Validators.required, Validators.email]],
@@ -40,13 +49,10 @@ export class AddTicketComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.getEmployees();
-  }
-
+  /**
+   * This function calls all the functions to safe the ticket
+   */
   safeTicket() {
-    console.log(this.ticketForm.controls['title'].value);
-
     if (this.checkFields()) {
       this.loading = true;
       this.setTicket();
@@ -58,10 +64,16 @@ export class AddTicketComponent implements OnInit {
     }
   }
 
+  /**
+   * This function directs the user to the page "Tickets"
+   */
   redirectToOpenTickets() {
     this.router.navigate(['/openTickets']);
   }
 
+  /**
+   * This function is used to set up the ticket
+   */
   setTicket() {
     this.ticket.title = this.ticketForm.controls['title'].value;
     this.ticket.description = this.ticketForm.controls['description'].value;
@@ -76,6 +88,9 @@ export class AddTicketComponent implements OnInit {
     this.ticket.dueDate = this.ticketForm.controls['dueDate'].value.getTime();
   }
 
+  /**
+   * This function to get the employees from the database
+   */
   getEmployees() {
     onSnapshot(collection(this.firestore, 'employees'), (employees) => {
       this.allEmployees = [];
@@ -85,6 +100,11 @@ export class AddTicketComponent implements OnInit {
     })
   }
 
+  /**
+   * This function will create an individual ticketnumber for every created ticket
+   * 
+   * @returns It returns the ticketnumber
+   */
   createTicketnumber() {
     let timestamp = new Date().getTime();
     var random = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
@@ -94,10 +114,18 @@ export class AddTicketComponent implements OnInit {
     return ticketNumber;
   }
 
+  /**
+   * This function will add the ticket to the database
+   */
   async addDocument() {
     await addDoc(collection(this.firestore, 'tickets'), this.ticket.toJson())
   }
 
+  /**
+   * This funtion checks the type of error for the contact input and returns the correct message for the situation
+   * 
+   * @returns It returns the  error message 
+   */
   getErrorMessageEmail() {
     const controls = this.ticketForm.controls;
 
@@ -107,10 +135,19 @@ export class AddTicketComponent implements OnInit {
     return controls['contact'].hasError('email') ? 'Not a valid email' : '';
   }
 
+  /**
+   * This functions will create the error message for every inputfield exept the contact
+   * 
+   * @param field This is the field we need the error message for
+   * @returns It returns the correct error message
+   */
   getErrorMessage(field: string) {
     return field + " is required"
   }
 
+  /**
+   * This function clears all inputfields
+   */
   clearFields() {
     this.ticket.title = '';
     this.ticket.description = '';
@@ -120,6 +157,9 @@ export class AddTicketComponent implements OnInit {
     this.ticket.urgency = '';
   }
 
+  /**
+   * This function will hide all error messages
+   */
   hideAllErrors() {
     this.showTitleError = false;
     this.showContactError = false;
@@ -129,6 +169,11 @@ export class AddTicketComponent implements OnInit {
     this.showEmployeeError = false;
   }
 
+  /**
+   * This function is used to check all the inputs
+   * 
+   * @returns It returns "true" if all the checks are passed
+   */
   checkFields() {
     this.hideAllErrors();
 

@@ -1,33 +1,43 @@
 <mat-card>
+
     <mat-card-header>
         <mat-card-title>Ticket Info</mat-card-title>
     </mat-card-header>
+
     <mat-card-content>
+
         <div *ngIf="!edit">
+
             <div class="info" *ngIf="ticketInfo">
                 <div class="category">Ticketnumber:</div>
                 <div>#{{ticketInfo.ticketNumber}}</div>
             </div>
+
             <div class="info" *ngIf="ticketInfo">
                 <div class="category">Title:</div>
                 <div>{{ticketInfo.title}}</div>
             </div>
+
             <div class="info" *ngIf="ticketInfo">
                 <div class="category">Description:</div>
                 <div>{{ticketInfo.description}}</div>
             </div>
+
             <div class="info" *ngIf="ticketInfo">
                 <div class="category">Company:</div>
                 <div>{{ticketInfo.company}}</div>
             </div>
+
             <div class="info" *ngIf="ticketInfo">
                 <div class="category">Contact:</div>
                 <div>{{ticketInfo.contact}}</div>
             </div>
+
             <div class="info" *ngIf="ticketInfo">
                 <div class="category">Due by:</div>
                 <div>{{transformDate(this.ticketInfo.dueDate)}}</div>
             </div>
+
             <div class="info" *ngIf="ticketInfo">
                 <div class="category">Assigned Employee:</div>
                 <div *ngIf="ticketInfo.assignedEmployee; else noEmployee">{{ticketInfo.assignedEmployee}}</div>
@@ -35,40 +45,51 @@
                     None
                 </ng-template>
             </div>
+
             <div class="info" *ngIf="ticketInfo">
                 <div class="category">Status:</div>
                 <div>{{ticketInfo.ticketStatus}}</div>
             </div>
+
             <div class="info" *ngIf="ticketInfo">
                 <div class="category">Created:</div>
                 <div>{{transformDate(this.ticketInfo.date)}}</div>
             </div>
+
         </div>
 
         <div *ngIf="edit">
+
             <div>
                 <mat-form-field class="full-width">
                     <mat-label>Title</mat-label>
                     <input [(ngModel)]="ticketInfoCopy.title" matInput placeholder="Title">
                 </mat-form-field>
             </div>
+
             <div>
                 <mat-form-field class="full-width">
                     <mat-label>Description</mat-label>
                     <textarea [(ngModel)]="ticketInfoCopy.description" matInput placeholder="Description"></textarea>
                 </mat-form-field>
             </div>
+
             <div class="full-width company-contact-container">
+
                 <mat-form-field class="margin-right-16 width-50">
                     <mat-label>Company</mat-label>
                     <input [(ngModel)]="ticketInfoCopy.company" matInput placeholder="Company">
                 </mat-form-field>
+
                 <mat-form-field class="width-50">
                     <mat-label>Contact</mat-label>
                     <input [(ngModel)]="ticketInfoCopy.contact" matInput placeholder="Contact">
                 </mat-form-field>
+
             </div>
+
             <div class="full-width company-contact-container">
+
                 <mat-form-field class="margin-right-16 width-50">
                     <mat-label>Due date</mat-label>
                     <input [(ngModel)]="ticketInfoCopyDate" matInput [matDatepicker]="picker">
@@ -76,6 +97,7 @@
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
+
                 <mat-form-field class="width-50">
                     <mat-label>Select the status</mat-label>
                     <mat-select [(ngModel)]="ticketInfoCopy.ticketStatus">
@@ -84,28 +106,41 @@
                         <mat-option value="Done">Done</mat-option>
                     </mat-select>
                 </mat-form-field>
+
             </div>
+
             <div>
+
                 <mat-form-field class="full-width">
                     <mat-label>Select the employee</mat-label>
                     <mat-select [(ngModel)]="ticketInfoCopy.assignedEmployee">
                         <mat-option value="None">None</mat-option>
-                        <mat-option *ngFor="let employee of allEmployees, index as i" value="{{allEmployees[i]['firstName']}} {{allEmployees[i]['lastName']}}">{{allEmployees[i]['firstName']}} {{allEmployees[i]['lastName']}}</mat-option>
+                        <mat-option *ngFor="let employee of allEmployees, index as i"
+                            value="{{allEmployees[i]['firstName']}} {{allEmployees[i]['lastName']}}">{{allEmployees[i]['firstName']}}
+                            {{allEmployees[i]['lastName']}}</mat-option>
                     </mat-select>
                     <mat-error>Error</mat-error>
                 </mat-form-field>
+
             </div>
+
         </div>
+
     </mat-card-content>
+
     <mat-card-actions *ngIf="edit">
         <button (click)="updateTicket()" mat-raised-button color="primary">Safe</button>
         <button (click)="dialogRef.close()" mat-raised-button>Cancel</button>
     </mat-card-actions>
+
     <mat-card-actions *ngIf="!edit">
         <button (click)="deleteTicket()" mat-raised-button color="primary">Finished!</button>
         <button (click)="dialogRef.close()" mat-raised-button>Close</button>
     </mat-card-actions>
-    <button *ngIf="!edit && data.collection !== 'ticketHistory'" (click)="switchEditMode()" class="edit-button" mat-icon-button>
+
+    <button *ngIf="!edit && data.collection !== 'ticketHistory'" (click)="switchEditMode()" class="edit-button"
+        mat-icon-button>
         <mat-icon>edit</mat-icon>
     </button>
+    
 </mat-card>

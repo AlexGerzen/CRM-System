@@ -24,6 +24,9 @@ export class RankingComponent implements OnInit {
     this.getOpenTickets();
   }
 
+  /**
+   * This function will get the tickets from the database
+   */
   async getOpenTickets() {
     await onSnapshot(collection(this.firestore, 'tickets'), (ticket) => {
       this.allTickets = [];
@@ -31,33 +34,38 @@ export class RankingComponent implements OnInit {
       ticket.forEach(ticketData => {
         this.allTickets.push(ticketData.data());
       })
-      this.rankTickets();
+      this.countCompanies();
     })
   }
+ 
+  /**
+   * This function will count how often a company has created a ticket
+   */
+  countCompanies() {
+    const companyCounts = {};
 
-  rankTickets() {
-    // Ein Objekt erstellen, um die Anzahl der Vorkommen jeder "company" zu zählen
-    const companyZaehlungen = {};
-  
-    // Durch das Array von Tickets iterieren
     this.allTickets.forEach(ticket => {
       const company = ticket.company;
       
-  
-      // Überprüfen, ob die "company" bereits gezählt wurde, wenn nicht, mit 1 initialisieren
-      companyZaehlungen[company] = (companyZaehlungen[company] || 0) + 1;
+      companyCounts[company] = (companyCounts[company] || 0) + 1;
     });
   
-    // Ein Array von Objekten erstellen, jedes Objekt enthält die "company" und die Anzahl ihrer Vorkommen
-    const companyArray = Object.keys(companyZaehlungen).map(company => ({
+    const companyArray = Object.keys(companyCounts).map(company => ({
       company: company,
-      anzahl: companyZaehlungen[company]
+      anzahl: companyCounts[company]
     }));
-  
-    // Das Array nach der Anzahl der Vorkommen absteigend sortieren
+    this.rankCompanies(companyArray)
+    this.dataSource = new MatTableDataSource(this.rankedTickets);
+  }
+
+  /**
+   * This function will get the top 3 companies with the most tickets
+   * 
+   * @param companyArray This is the array with the info how often each company has created a ticket
+   */
+  rankCompanies(companyArray) {
     companyArray.sort((a, b) => b.anzahl - a.anzahl);
-  
-    // Die Top 3 Unternehmen auswählen
+
     const top3 = companyArray.slice(0, 3);
   
     top3.forEach((companyInfo, index) => {
@@ -71,9 +79,5 @@ export class RankingComponent implements OnInit {
         tickets: ticketAnzahl
       });
     });
-
-    console.log(this.rankedTickets);
-  
-    this.dataSource = new MatTableDataSource(this.rankedTickets);
   }
 }

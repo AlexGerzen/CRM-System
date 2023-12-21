@@ -1,8 +1,11 @@
 <mat-card>
     <mat-card-content>
+
         <div *ngIf="showChart" id="chart">
             <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
-                [responsive]="chartOptions.responsive" [legend]="chartOptions.legend" [colors]="chartOptions.colors" [dataLabels]="chartOptions.dataLabels" [fill]="chartOptions.fill"></apx-chart>
+                [responsive]="chartOptions.responsive" [legend]="chartOptions.legend" [colors]="chartOptions.colors"
+                [dataLabels]="chartOptions.dataLabels" [fill]="chartOptions.fill"></apx-chart>
         </div>
+
     </mat-card-content>
 </mat-card>
