@@ -42,6 +42,7 @@ import { DialogNotepadComponent } from './dialog-notepad/dialog-notepad.componen
 import { RankingComponent } from './ranking/ranking.component';
 import {MatTableModule} from '@angular/material/table';
 import { WidthAlertComponent } from './width-alert/width-alert.component';
+import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 
 
 
@@ -64,7 +65,8 @@ import { WidthAlertComponent } from './width-alert/width-alert.component';
     NotepadComponent,
     DialogNotepadComponent,
     RankingComponent,
-    WidthAlertComponent
+    WidthAlertComponent,
+    LegalNoticeComponent
   ],
   imports: [
     BrowserModule,

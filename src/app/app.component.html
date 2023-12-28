@@ -6,15 +6,23 @@
 
     <ul class="menu-items">
       <li [class.highlight-background]="linkStatus.dashboard" [routerLink]="['/']">
-        <mat-icon>fact_check</mat-icon>Dashboard</li>
+        <mat-icon>fact_check</mat-icon>Dashboard
+      </li>
       <li [class.highlight-background]="linkStatus.employees" [routerLink]="['/employees']">
-        <mat-icon>perm_identity</mat-icon>Employees</li>
+        <mat-icon>perm_identity</mat-icon>Employees
+      </li>
       <li [class.highlight-background]="linkStatus.openTickets" [routerLink]="['/openTickets']">
-        <mat-icon>support_agent</mat-icon>Tickets</li>
+        <mat-icon>support_agent</mat-icon>Tickets
+      </li>
       <li [class.highlight-background]="linkStatus.addTicket" [routerLink]="['/addTicket']">
-        <mat-icon>confirmation_number</mat-icon>Add Ticket</li>
+        <mat-icon>confirmation_number</mat-icon>Add Ticket
+      </li>
       <li [class.highlight-background]="linkStatus.finishedTickets" [routerLink]="['/finishedTickets']">
-        <mat-icon>history</mat-icon>Ticket History</li>
+        <mat-icon>history</mat-icon>Ticket History
+      </li>
+      <li [class.highlight-background]="linkStatus.legalNotice" [routerLink]="['/legalNotice']">
+        <mat-icon>article</mat-icon>Legal Notice
+      </li>
     </ul>
   </mat-drawer>
 

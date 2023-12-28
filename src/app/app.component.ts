@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
     openTickets: false,
     employees: false,
     dashboard: false,
+    legalNotice: false,
   };
   staticPath;
 

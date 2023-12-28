@@ -5,6 +5,7 @@ import { OpenTicketsComponent } from './open-tickets/open-tickets.component';
 import { AddTicketComponent } from './add-ticket/add-ticket.component';
 import { FinishedTicketsComponent } from './finished-tickets/finished-tickets.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'openTickets', component: OpenTicketsComponent},
   {path: 'addTicket', component: AddTicketComponent},
   {path: 'finishedTickets', component: FinishedTicketsComponent},
+  {path: 'legalNotice', component: LegalNoticeComponent},
 ];
 
 @NgModule({
