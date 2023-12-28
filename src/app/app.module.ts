@@ -41,6 +41,7 @@ import { NotepadComponent } from './notepad/notepad.component';
 import { DialogNotepadComponent } from './dialog-notepad/dialog-notepad.component';
 import { RankingComponent } from './ranking/ranking.component';
 import {MatTableModule} from '@angular/material/table';
+import { WidthAlertComponent } from './width-alert/width-alert.component';
 
 
 
@@ -62,7 +63,8 @@ import {MatTableModule} from '@angular/material/table';
     UnassignedTicketsComponent,
     NotepadComponent,
     DialogNotepadComponent,
-    RankingComponent
+    RankingComponent,
+    WidthAlertComponent
   ],
   imports: [
     BrowserModule,

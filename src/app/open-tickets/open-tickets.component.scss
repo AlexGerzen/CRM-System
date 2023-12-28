@@ -93,3 +93,30 @@
     background-color: #f0f0f0;
     border-radius: 10px;
 }
+
+@media (max-width: 1300px) {
+    .ticket-container {
+        mat-card-title {
+            font-size: 28px;
+        }
+
+        mat-card-subtitle {
+            font-size: 20px;
+        }
+
+        mat-card-content {
+            p {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    .assignedEmployee {
+        font-size: 14px;
+    }
+
+}
