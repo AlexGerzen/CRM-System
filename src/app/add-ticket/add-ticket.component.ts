@@ -2,7 +2,6 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Firestore, collection, addDoc, onSnapshot } from '@angular/fire/firestore';
 import { Ticket } from 'src/models/ticket.class';
-import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({

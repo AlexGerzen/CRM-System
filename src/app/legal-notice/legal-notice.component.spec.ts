@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LegalNoticeComponent } from './legal-notice.component';
+import { MatCardModule } from '@angular/material/card';
 
 describe('LegalNoticeComponent', () => {
   let component: LegalNoticeComponent;
@@ -8,6 +9,7 @@ describe('LegalNoticeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [MatCardModule],
       declarations: [LegalNoticeComponent]
     });
     fixture = TestBed.createComponent(LegalNoticeComponent);
